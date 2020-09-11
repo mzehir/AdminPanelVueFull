@@ -11,6 +11,7 @@ import personelInformation from './modules/personelInformation';
 import education from './modules/education';
 import experience from './modules/experience';
 import skills from './modules/skills';
+import projects from './modules/projects';
 
 Vue.use(Vuex);
 
@@ -82,6 +83,7 @@ const store = new Vuex.Store({
         education: education,
         experience: experience,
         skills: skills,
+        projects: projects,
     }
 
 })

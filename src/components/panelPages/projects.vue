@@ -24,6 +24,7 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Projeye verilebilecek bir isim"
+              v-model="tamalananProjeler.projeAdi"
             />
           </div>
 
@@ -35,17 +36,19 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Proje içeriği hakkında bilgi"
+              v-model="tamalananProjeler.projeHakkinda"
             />
           </div>
 
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-              <strong>Proje Ortakları:</strong>
+              <strong>Proje Ortağı:</strong>
             </span>
             <input
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
-              placeholder="Varsa ortakların isimleri"
+              placeholder="Varsa ortak ismi"
+              v-model="tamalananProjeler.projeOrtaklari"
             />
           </div>
 
@@ -57,6 +60,7 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Varsa github adresi"
+              v-model="tamalananProjeler.githubAdresi"
             />
           </div>
 
@@ -68,11 +72,12 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Varsa url adresi"
+              v-model="tamalananProjeler.urlAdresi"
             />
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button class="btn btn-success btn-block mt-3">Ekle</button>
+            <button @click="tamalananProjelerKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -191,6 +196,218 @@
             <button class="btn btn-danger btn-block mt-3">Sıfırla</button>
           </div>
         </div>
+
+        <!-- ############################### -->
+        <!-- ############################### -->
+        <!-- PORTFOLİO BÖLÜMÜ -->
+        <!-- ############################### -->
+        <!-- ############################### -->
+        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+          <div class="row">
+            <h4
+              class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
+            >Portfolio</h4>
+          </div>
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Portföy Başlığı:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Fotoğrafa verilebilecek bir başlık..."
+              v-model="portfolio.portfoyBasligi"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Öz Portföy Açıklaması:</strong>
+            </span>
+            <textarea
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Fotoğrafla ilgili kısa bilgilendirme..."
+              v-model="portfolio.portfoyKisaAciklama"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Tam Portföy Açıklaması:</strong>
+            </span>
+            <textarea
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Fotoğrafla ilgili tam bilgilendirme..."
+              v-model="portfolio.portfoyUzunAciklama"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Müşteri Bilgisi:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Fotoğrafa ait projenin müşteri bilgisi..."
+              v-model="portfolio.musteriBilgisi"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Tamamlanma Tarihi:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Projenin tamamlanma tarihi..."
+              v-model="portfolio.tamamlanmaTarihi"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Proje Fotoğrafı:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control-file"
+              type="file"
+              @change="portfolioFotoYakala($event)"
+            />
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
+            <button @click="portfolioKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+          </div>
+        </div>
+        <!-- ------------------------------- -->
+        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2">
+          <div class="row">
+            <h4
+              class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
+            >Portfolio Kayıtları</h4>
+          </div>
+
+          <div class="table-responsive">
+            <table id class="table table-striped">
+              <thead class="bg-success text-white">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Portföy Başlığı</th>
+                  <th scope="col">Müşteri Bilgisi</th>
+                  <th scope="col">Tamamlanma Tarihi</th>
+                  <th scope="col">Portföy Fotoğrafı</th>
+                  <th scope="col">Güncelle</th>
+                  <th scope="col">Sil</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                  <td>@mdo</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >Güncelle</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">Sil</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Jacobsssssssssssssssssss</td>
+                  <td>Thorntonssssssssssssssssss</td>
+                  <td>@fat</td>
+                  <td>@mdo</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >Güncelle</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">Sil</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                  <td>@mdo</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >Güncelle</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">Sil</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row">4</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                  <td>@mdo</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >Güncelle</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">Sil</button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Larry</td>
+                  <td>the Bird</td>
+                  <td>@twitter</td>
+                  <td>@mdo</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >Güncelle</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">Sil</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
+            <button class="btn btn-danger btn-block mt-3">Sıfırla</button>
+          </div>
+        </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
           <button class="btn btn-danger btn-block mt-5 mb-3">Tüm Bilgileri Sil</button>
         </div>
@@ -229,7 +446,54 @@
 </template>
 <script>
 export default {
-  methods: {},
+  data() {
+    return {
+      tamalananProjeler: {
+        projeAdi: "",
+        projeHakkinda: "",
+        projeOrtaklari: "",
+        githubAdresi: "",
+        urlAdresi: "",
+      },
+
+      portfolio: {
+        portfoyBasligi: "",
+        portfoyKisaAciklama: "",
+        portfoyUzunAciklama: "",
+        musteriBilgisi: "",
+        tamamlanmaTarihi: "",
+        portfoyFotoName: "",
+      },
+      portfoyFoto: "",
+    };
+  },
+  methods: {
+    tamalananProjelerKaydet() {
+      this.$store.dispatch("setFireTamamlananProjeler", this.tamalananProjeler);
+    },
+
+    portfolioFotoYakala(event) {
+      this.portfoyFoto = event.target.files[0];
+      this.portfolio.portfoyFotoName = event.target.files[0].name;
+      console.log(this.portfolio.portfoyFotoName)
+    },
+
+    portfolioKaydet() {
+      this.$store.dispatch("setFirePortfolio", {
+        portfolio: this.portfolio,
+        portfoyFoto: this.portfoyFoto,
+      } )
+    },
+  },
+  created() {
+    this.$store.dispatch("getFireProjelerFormu");
+    this.$store.dispatch("getFirePortfoyFotolar");
+
+
+    var hash = window.location.hash;
+    var newString01 = hash.replace("#", "");
+    localStorage.setItem("urlBilgisi", newString01);
+  },
 };
 </script>
 <style scoped>
