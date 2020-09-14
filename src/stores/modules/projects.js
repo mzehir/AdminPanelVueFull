@@ -22,12 +22,10 @@ const mutations = {
     setProjelerFormuDTO(state, data) {
         state.tamamlananProjelerDTO = data.TamamlananProjeler;
         state.portfoyDTO = data.portfoyler;
-        // console.log(state.tamamlananProjelerDTO)
     },
 
     setPortfoyFotolarURLDTO(state, data) {
         state.portfoyFotolarURLDTO = data
-        console.log(state.portfoyFotolarURLDTO)
     },
 
     setPortfoyFotolarNameDTO(state, data) {
@@ -36,8 +34,7 @@ const mutations = {
             newString01.push(data[i].replace("Portfoyler/", ""))
         };
         state.portfoyFotolarNameDTO = newString01
-        console.log(state.portfoyFotolarNameDTO)
-    }
+    },
 }
 
 const actions = {
@@ -45,12 +42,12 @@ const actions = {
         let Fire = Firebase.db.collection('Admin').doc('ProjeBilgileri');
         Fire.get().then(function (doc) {
             if (doc.exists) {
-                commit('setProjelerFormuDTO', doc.data())
-                commit('isPageProjectsFullDTO', doc.exists)
+                commit('setProjelerFormuDTO', doc.data());
+                commit('isPageProjectsFullDTO', doc.exists);
             }
             else {
-                console.log("Getirilecek veri yok")
-                commit('isPageProjectsFullDTO', doc.exists)
+                console.log("Getirilecek veri yok");
+                commit('isPageProjectsFullDTO', doc.exists);
             }
         }).catch(function (error) {
             console.log(error)
@@ -66,7 +63,7 @@ const actions = {
                     for (let i = 0; i < res.items.length; i++) {
                         fotolarFullPath.push(res.items[i].fullPath)
                     }
-                    commit("setPortfoyFotolarNameDTO", fotolarFullPath)
+                    commit("setPortfoyFotolarNameDTO", fotolarFullPath);
                 }
             })
             .then(function () {
@@ -77,7 +74,7 @@ const actions = {
                                 fotolarURL.push(res2)
                             })
                     }
-                    commit("setPortfoyFotolarURLDTO", fotolarURL)
+                    commit("setPortfoyFotolarURLDTO", fotolarURL);
                 }
             })
 
@@ -121,17 +118,13 @@ const actions = {
     },
 
     setFirePortfolio({ dispatch, state }, data) {
-        debugger
-        if (state.portfoyFotolarNameDTO.length > 0) {
-            debugger
-            //Burası yapılacak
-            for (let i = 0; i < state.portfoyFotolarNameDTO.length; i++) {
-                if (state.portfoyFotolarNameDTO[i] == data.portfoyFoto.name) {
-                    alert( data.portfoyFoto.name + " " + "fotoğraf ismiyle daha önce yükleme yaptınız. Lütfen fotoğraf ismini değiştiriniz.")
-                }
+        for (let i = 0; i < state.portfoyFotolarNameDTO.length; i++) {
+            if (state.portfoyFotolarNameDTO[i] == data.portfoyFoto.name) {
+                alert(data.portfoyFoto.name + " " + "fotoğraf ismiyle daha önce yükleme yaptınız. Lütfen fotoğraf ismini değiştiriniz.");
+                return;
             }
         }
-        else if (state.isPageProjectsFullDTO) {
+        if (state.isPageProjectsFullDTO) {
             debugger
             if (state.portfoyDTO) {
                 let portfoylerList = [];

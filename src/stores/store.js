@@ -12,6 +12,7 @@ import education from './modules/education';
 import experience from './modules/experience';
 import skills from './modules/skills';
 import projects from './modules/projects';
+import contact from './modules/contact';
 
 Vue.use(Vuex);
 
@@ -84,6 +85,7 @@ const store = new Vuex.Store({
         experience: experience,
         skills: skills,
         projects: projects,
+        contact: contact,
     }
 
 })

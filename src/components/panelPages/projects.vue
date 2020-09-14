@@ -101,81 +101,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    >Güncelle</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacobsssssssssssssssssss</td>
-                  <td>Thorntonssssssssssssssssss</td>
-                  <td>@fat</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    >Güncelle</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    >Güncelle</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    >Güncelle</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
+                <tr :key="index" v-for="(tamamlananProje, index) in getTamamlananProjeler">
+                  <th scope="row">{{index + 1}}</th>
+                  <td>{{tamamlananProje.projeAdi}}</td>
+                  <td>{{tamamlananProje.githubAdresi}}</td>
+                  <td>{{tamamlananProje.urlAdresi}}</td>
                   <td>
                     <button
                       type="button"
@@ -305,88 +235,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
+                <tr :key="index" v-for="(portfoy, index) in getPortfolio">
+                  <th scope="row">{{index + 1}}</th>
+                  <td>{{portfoy.portfoyBasligi}}</td>
+                  <td>{{portfoy.musteriBilgisi}}</td>
+                  <td>{{portfoy.tamamlanmaTarihi}}</td>
                   <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    >Güncelle</button>
+                    <img height="100" width="100" :src="portfoy.fotoUrl" alt />
                   </td>
-                  <td>
-                    <button class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacobsssssssssssssssssss</td>
-                  <td>Thorntonssssssssssssssssss</td>
-                  <td>@fat</td>
-                  <td>@mdo</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    >Güncelle</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    >Güncelle</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row">4</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                    >Güncelle</button>
-                  </td>
-                  <td>
-                    <button class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <th scope="row">5</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
-                  <td>@mdo</td>
                   <td>
                     <button
                       type="button"
@@ -475,24 +331,50 @@ export default {
     portfolioFotoYakala(event) {
       this.portfoyFoto = event.target.files[0];
       this.portfolio.portfoyFotoName = event.target.files[0].name;
-      console.log(this.portfolio.portfoyFotoName)
+      console.log(this.portfolio.portfoyFotoName);
     },
 
     portfolioKaydet() {
       this.$store.dispatch("setFirePortfolio", {
         portfolio: this.portfolio,
         portfoyFoto: this.portfoyFoto,
-      } )
+      });
     },
   },
   created() {
     this.$store.dispatch("getFireProjelerFormu");
     this.$store.dispatch("getFirePortfoyFotolar");
 
-
     var hash = window.location.hash;
     var newString01 = hash.replace("#", "");
     localStorage.setItem("urlBilgisi", newString01);
+  },
+  computed: {
+    getTamamlananProjeler() {
+      return this.$store.state.projects.tamamlananProjelerDTO;
+    },
+
+    getPortfolio() {
+      debugger
+      if (
+        this.$store.state.projects.portfoyDTO > 0 &&
+        this.$store.state.projects.portfoyFotolarURLDTO > 0 &&
+        this.$store.state.projects.portfoyDTO.length ==
+          this.$store.state.projects.portfoyFotolarURLDTO.length
+      ) {
+        for (let i = 0; i < this.$store.state.projects.portfoyDTO.length; i++) {
+          this.$store.state.projects.portfoyDTO[
+            i
+          ].fotoUrl = this.$store.state.projects.portfoyFotolarURLDTO[i];
+        }
+        console.log(this.$store.state.projects.portfoyDTO);
+        return this.$store.state.projects.portfoyDTO;
+      }
+      else{
+        console.log("Getirilecek veri bulunamadı...")
+      }
+      //  return this.$store.state.projects.portfoyDTO;
+    },
   },
 };
 </script>

@@ -24,6 +24,7 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Örneğin '0 541 555 5555' gibi"
+              v-model="iletisimBilgileri.gsm"
             />
           </div>
 
@@ -35,6 +36,7 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Örneğin 'Beşiktaş / İSTANBUL' gibi"
+              v-model="iletisimBilgileri.lokasyon"
             />
           </div>
 
@@ -46,6 +48,7 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Örneğin 'deneme@gmail.com' gibi"
+              v-model="iletisimBilgileri.email"
             />
           </div>
 
@@ -57,11 +60,12 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Örneğin 'mynet'"
+              v-model="iletisimBilgileri.website"
             />
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button class="btn btn-success btn-block mt-3">Kaydet</button>
+            <button @click="iletisimBilgileriKaydet" class="btn btn-success btn-block mt-3">Kaydet</button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -115,26 +119,43 @@
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-              <strong>Hobiler:</strong>
+              <strong>Hesap:</strong>
             </span>
-            <select name id class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control">
-              <option value="fab fa-facebook-f">Facebook</option>
-              <option value="fab fa-twitter">Twitter</option>
-              <option value="fab fa-instagram">İnstagram</option>
-              <option value="fab fa-github">Github</option>
-              <option value="fab fa-linkedin-in">Linkedin</option>
-              <option value="fab fa-youtube">Youtube</option>
-              <option value="fab fa-pinterest-p">Pinterest</option>
-              <option value="fab fa-reddit-alien">Reddit</option>
-              <option value="fab fa-vimeo-v">Vimeo</option>
-              <option value="fab fa-blogger-b">Blogger</option>
-              <option value="fab fa-tumblr">Tumblr</option>
-              <option value="fab fa-flickr">Flickr</option>
-              <option value="fab fa-google-plus-g">Google Plus</option>
+            <select
+              v-model="sosyalMedyaHesaplari.smIconCode"
+              name
+              id
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+            >
+              <option class="smHesapOption" value="fab fa-facebook-f">Facebook</option>
+              <option class="smHesapOption" value="fab fa-twitter">Twitter</option>
+              <option class="smHesapOption" value="fab fa-instagram">İnstagram</option>
+              <option class="smHesapOption" value="fab fa-github">Github</option>
+              <option class="smHesapOption" value="fab fa-linkedin-in">Linkedin</option>
+              <option class="smHesapOption" value="fab fa-youtube">Youtube</option>
+              <option class="smHesapOption" value="fab fa-pinterest-p">Pinterest</option>
+              <option class="smHesapOption" value="fab fa-reddit-alien">Reddit</option>
+              <option class="smHesapOption" value="fab fa-vimeo-v">Vimeo</option>
+              <option class="smHesapOption" value="fab fa-blogger-b">Blogger</option>
+              <option class="smHesapOption" value="fab fa-tumblr">Tumblr</option>
+              <option class="smHesapOption" value="fab fa-flickr">Flickr</option>
+              <option class="smHesapOption" value="fab fa-google-plus-g">Google Plus</option>
             </select>
           </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Hesap Adresi:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Hesap profil adresi"
+              v-model="sosyalMedyaHesaplari.smUrlAdress"
+            />
+          </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button class="btn btn-success btn-block mt-3">Ekle</button>
+            <button @click="smHesaplariKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -144,19 +165,36 @@
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
             >S.M.Hesap Kayıtları</h4>
           </div>
-          <div class="row mb-2">
-            <span class="col-md-12">
-              <button class="btn btn-danger btn-small">Sil</button>
-              1:
-              <strong>Facebook</strong>
-            </span>
-          </div>
-          <div class="row mb-2">
-            <span class="col-md-12">
-              <button class="btn btn-danger btn-small">Sil</button>
-              2:
-              <strong>Twitter</strong>
-            </span>
+          <div class="table-responsive">
+            <table id class="table table-striped">
+              <thead class="bg-success text-white">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Hesap</th>
+                  <th scope="col">Hesap Adresi</th>
+                  <th scope="col">Güncelle</th>
+                  <th scope="col">Sil</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"></th>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal1"
+                    >Güncelle</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger">Sil</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
             <button class="btn btn-danger btn-block mt-3">Sıfırla</button>
@@ -181,6 +219,7 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Referans olan kişinin adı ve soyadı"
+              v-model="referanslar.nameAndSurname"
             />
           </div>
 
@@ -192,6 +231,7 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Referans olan kişinin telefon numarası"
+              v-model="referanslar.gsm"
             />
           </div>
 
@@ -203,6 +243,7 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Referans olan kişinin email adresi"
+              v-model="referanslar.email"
             />
           </div>
 
@@ -214,11 +255,12 @@
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
               placeholder="Referans olan kişinin websitesi"
+              v-model="referanslar.website"
             />
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button class="btn btn-success btn-block mt-3">Kaydet</button>
+            <button @click="referanslarKaydet" class="btn btn-success btn-block mt-3">Kaydet</button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -269,7 +311,59 @@
 </template>
 <script>
 export default {
-  methods: {},
+  data() {
+    return {
+      iletisimBilgileri: {
+        gsm: "",
+        lokasyon: "",
+        email: "",
+        website: "",
+      },
+      referanslar: {
+        nameAndSurname: "",
+        gsm: "",
+        email: "",
+        website: "",
+      },
+      sosyalMedyaHesaplari: {
+        smInnerHtml: "",
+        smIconCode: "",
+        smUrlAdress: "",
+      },
+    };
+  },
+  methods: {
+    iletisimBilgileriKaydet() {
+      this.$store.dispatch("iletisimBilgileriToFire", this.iletisimBilgileri);
+    },
+
+    referanslarKaydet() {
+      this.$store.dispatch("referanslarToFire", this.referanslar);
+    },
+
+    smHesaplariKaydet() {
+      let classNamesmHesapOption = document.getElementsByClassName(
+        "smHesapOption"
+      );
+      for (let i = 0; i < classNamesmHesapOption.length; i++) {
+        if (
+          classNamesmHesapOption[i].value ==
+          this.sosyalMedyaHesaplari.smIconCode
+        ) {
+          this.sosyalMedyaHesaplari.smInnerHtml =
+            classNamesmHesapOption[i].innerHTML;
+        }
+      }
+      this.$store.dispatch("smHesaplariToFire", this.sosyalMedyaHesaplari);
+    },
+  },
+  created() {
+    this.$store.dispatch("getIletisimFormu");
+
+    var hash = window.location.hash;
+    var newString01 = hash.replace("#", "");
+    localStorage.setItem("urlBilgisi", newString01);
+  },
 };
 </script>
 <style scoped>
