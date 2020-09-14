@@ -235,13 +235,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr :key="index" v-for="(portfoy, index) in getPortfolio">
-                  <th scope="row">{{index + 1}}</th>
-                  <td>{{portfoy.portfoyBasligi}}</td>
-                  <td>{{portfoy.musteriBilgisi}}</td>
-                  <td>{{portfoy.tamamlanmaTarihi}}</td>
+                <tr>
+                  <th scope="row">{{}}</th>
+                  <td>{{}}</td>
+                  <td>{{}}</td>
+                  <td>{{}}</td>
                   <td>
-                    <img height="100" width="100" :src="portfoy.fotoUrl" alt />
+                    <img height="100" width="100"  alt />
                   </td>
                   <td>
                     <button
@@ -319,6 +319,7 @@ export default {
         musteriBilgisi: "",
         tamamlanmaTarihi: "",
         portfoyFotoName: "",
+        portfoyFotoUrl: "",
       },
       portfoyFoto: "",
     };
@@ -331,7 +332,6 @@ export default {
     portfolioFotoYakala(event) {
       this.portfoyFoto = event.target.files[0];
       this.portfolio.portfoyFotoName = event.target.files[0].name;
-      console.log(this.portfolio.portfoyFotoName);
     },
 
     portfolioKaydet() {
@@ -343,7 +343,7 @@ export default {
   },
   created() {
     this.$store.dispatch("getFireProjelerFormu");
-    this.$store.dispatch("getFirePortfoyFotolar");
+    // this.$store.dispatch("getFirePortfoyFotolar");
 
     var hash = window.location.hash;
     var newString01 = hash.replace("#", "");
@@ -354,27 +354,6 @@ export default {
       return this.$store.state.projects.tamamlananProjelerDTO;
     },
 
-    getPortfolio() {
-      debugger
-      if (
-        this.$store.state.projects.portfoyDTO > 0 &&
-        this.$store.state.projects.portfoyFotolarURLDTO > 0 &&
-        this.$store.state.projects.portfoyDTO.length ==
-          this.$store.state.projects.portfoyFotolarURLDTO.length
-      ) {
-        for (let i = 0; i < this.$store.state.projects.portfoyDTO.length; i++) {
-          this.$store.state.projects.portfoyDTO[
-            i
-          ].fotoUrl = this.$store.state.projects.portfoyFotolarURLDTO[i];
-        }
-        console.log(this.$store.state.projects.portfoyDTO);
-        return this.$store.state.projects.portfoyDTO;
-      }
-      else{
-        console.log("Getirilecek veri bulunamadı...")
-      }
-      //  return this.$store.state.projects.portfoyDTO;
-    },
   },
 };
 </script>

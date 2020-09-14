@@ -59,23 +59,20 @@ const actions = {
         let fotolarURL = [];
         Firebase.storageRef.child("Portfoyler/").listAll()
             .then(function (res) {
-                if (res.items.length > 0) {
-                    for (let i = 0; i < res.items.length; i++) {
-                        fotolarFullPath.push(res.items[i].fullPath)
-                    }
-                    commit("setPortfoyFotolarNameDTO", fotolarFullPath);
+                for (let i = 0; i < res.items.length; i++) {
+                    fotolarFullPath.push(res.items[i].fullPath)
                 }
+                commit("setPortfoyFotolarNameDTO", fotolarFullPath);
+                console.log(res)
             })
             .then(function () {
-                if (fotolarFullPath) {
-                    for (let i = 0; i < fotolarFullPath.length; i++) {
-                        Firebase.storageRef.child(fotolarFullPath[i]).getDownloadURL()
-                            .then(function (res2) {
-                                fotolarURL.push(res2)
-                            })
-                    }
-                    commit("setPortfoyFotolarURLDTO", fotolarURL);
+                for (let i = 0; i < fotolarFullPath.length; i++) {
+                    Firebase.storageRef.child(fotolarFullPath[i]).getDownloadURL()
+                        .then(function (res2) {
+                            fotolarURL.push(res2)
+                        })
                 }
+                commit("setPortfoyFotolarURLDTO", fotolarURL);
             })
 
 
@@ -118,62 +115,54 @@ const actions = {
     },
 
     setFirePortfolio({ dispatch, state }, data) {
-        for (let i = 0; i < state.portfoyFotolarNameDTO.length; i++) {
-            if (state.portfoyFotolarNameDTO[i] == data.portfoyFoto.name) {
-                alert(data.portfoyFoto.name + " " + "fotoğraf ismiyle daha önce yükleme yaptınız. Lütfen fotoğraf ismini değiştiriniz.");
+        for (let i = 0; i < state.portfoyDTO.length; i++) {
+            if (state.portfoyDTO[i].portfoyFotoName == data.portfolio.portfoyFotoName) {
+                alert("HATA!!!" + " " + data.portfolio.portfoyFotoName + " " + "fotoğraf ismiyle daha önce yükleme yaptınız. Lütfen fotoğraf ismini değiştiriniz.")
                 return;
             }
-        }
-        if (state.isPageProjectsFullDTO) {
-            debugger
-            if (state.portfoyDTO) {
-                let portfoylerList = [];
-                for (let i = 0; i < state.portfoyDTO.length; i++) {
-                    portfoylerList.push(state.portfoyDTO[i]);
-                };
-                portfoylerList.push(data.portfolio);
-                Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
-                    "portfoyler": portfoylerList
-                })
-                    .then(function () {
-                        dispatch("getFireProjelerFormu");
+        };
+        let portfoylerList = [];
+        Firebase.storage.ref(`Portfoyler/${data.portfoyFoto.name}`).put(data.portfoyFoto)
+            .then(function (res) {
+                Firebase.storageRef.child(res.ref.fullPath).getDownloadURL()
+                    .then(function (res2) {
+                        data.portfolio.portfoyFotoUrl = res2
                     })
-                Firebase.storage.ref(`Portfoyler/${data.portfoyFoto.name}`).put(data.portfoyFoto)
                     .then(function () {
-                        dispatch("getFirePortfoyFotolar");
+                        if (state.isPageProjectsFullDTO) {
+                            if (state.portfoyDTO) {
+                                for (let i = 0; i < state.portfoyDTO.length; i++) {
+                                    portfoylerList.push(state.portfoyDTO[i]);
+                                };
+                                portfoylerList.push(data.portfolio);
+                                Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
+                                    "portfoyler": portfoylerList
+                                })
+                                    .then(function () {
+                                        dispatch("getFireProjelerFormu");
+                                    })
+                            }
+                            else {
+                                portfoylerList.push(data.portfolio);
+                                Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
+                                    "portfoyler": portfoylerList
+                                })
+                                    .then(function () {
+                                        dispatch("getFireProjelerFormu");
+                                    })
+                            }
+                        }
+                        else {
+                            portfoylerList.push(data.portfolio);
+                            Firebase.db.collection("Admin").doc("ProjeBilgileri").set({
+                                "portfoyler": portfoylerList
+                            })
+                                .then(function () {
+                                    dispatch("getFireProjelerFormu");
+                                })
+                        }
                     })
-            }
-            else {
-                debugger
-                let portfoylerList = [];
-                portfoylerList.push(data.portfolio)
-                Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
-                    "portfoyler": portfoylerList
-                })
-                    .then(function () {
-                        dispatch("getFireProjelerFormu");
-                    })
-                Firebase.storage.ref(`Portfoyler/${data.portfoyFoto.name}`).put(data.portfoyFoto)
-                    .then(function () {
-                        dispatch("getFirePortfoyFotolar");
-                    })
-            }
-        }
-        else {
-            debugger
-            let portfoylerList = [];
-            portfoylerList.push(data.portfolio)
-            Firebase.db.collection("Admin").doc("ProjeBilgileri").set({
-                "portfoyler": portfoylerList
             })
-                .then(function () {
-                    dispatch("getFireProjelerFormu");
-                })
-            Firebase.storage.ref(`Portfoyler/${data.portfoyFoto.name}`).put(data.portfoyFoto)
-                .then(function () {
-                    dispatch("getFirePortfoyFotolar");
-                })
-        }
     }
 }
 
