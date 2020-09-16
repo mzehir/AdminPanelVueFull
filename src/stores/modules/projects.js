@@ -6,8 +6,6 @@ const state = {
     isPageProjectsFullDTO: "",
     tamamlananProjelerDTO: [],
     portfoyDTO: [],
-    portfoyFotolarNameDTO: [],
-    portfoyFotolarURLDTO: [],
 }
 
 const getters = {
@@ -22,18 +20,6 @@ const mutations = {
     setProjelerFormuDTO(state, data) {
         state.tamamlananProjelerDTO = data.TamamlananProjeler;
         state.portfoyDTO = data.portfoyler;
-    },
-
-    setPortfoyFotolarURLDTO(state, data) {
-        state.portfoyFotolarURLDTO = data
-    },
-
-    setPortfoyFotolarNameDTO(state, data) {
-        var newString01 = [];
-        for (let i = 0; i < data.length; i++) {
-            newString01.push(data[i].replace("Portfoyler/", ""))
-        };
-        state.portfoyFotolarNameDTO = newString01
     },
 }
 
@@ -52,30 +38,6 @@ const actions = {
         }).catch(function (error) {
             console.log(error)
         })
-    },
-
-    getFirePortfoyFotolar({ commit }) {
-        let fotolarFullPath = [];
-        let fotolarURL = [];
-        Firebase.storageRef.child("Portfoyler/").listAll()
-            .then(function (res) {
-                for (let i = 0; i < res.items.length; i++) {
-                    fotolarFullPath.push(res.items[i].fullPath)
-                }
-                commit("setPortfoyFotolarNameDTO", fotolarFullPath);
-                console.log(res)
-            })
-            .then(function () {
-                for (let i = 0; i < fotolarFullPath.length; i++) {
-                    Firebase.storageRef.child(fotolarFullPath[i]).getDownloadURL()
-                        .then(function (res2) {
-                            fotolarURL.push(res2)
-                        })
-                }
-                commit("setPortfoyFotolarURLDTO", fotolarURL);
-            })
-
-
     },
 
     setFireTamamlananProjeler({ dispatch }, data) {
@@ -115,12 +77,16 @@ const actions = {
     },
 
     setFirePortfolio({ dispatch, state }, data) {
-        for (let i = 0; i < state.portfoyDTO.length; i++) {
-            if (state.portfoyDTO[i].portfoyFotoName == data.portfolio.portfoyFotoName) {
-                alert("HATA!!!" + " " + data.portfolio.portfoyFotoName + " " + "fotoğraf ismiyle daha önce yükleme yaptınız. Lütfen fotoğraf ismini değiştiriniz.")
-                return;
-            }
-        };
+        if (state.portfoyDTO) {
+            for (let i = 0; i < state.portfoyDTO.length; i++) {
+                if (state.portfoyDTO[i].portfoyFotoName == data.portfolio.portfoyFotoName) {
+                    alert("HATA!!!" + " " + data.portfolio.portfoyFotoName + " " + "fotoğraf ismiyle daha önce yükleme yaptınız. Lütfen fotoğraf ismini değiştiriniz.")
+                    return;
+                }
+                //Burası değiştirilebilir.
+            };
+        }
+
         let portfoylerList = [];
         Firebase.storage.ref(`Portfoyler/${data.portfoyFoto.name}`).put(data.portfoyFoto)
             .then(function (res) {
@@ -163,6 +129,100 @@ const actions = {
                         }
                     })
             })
+    },
+
+    deleteProjelerFormu({ }) {
+        if (window.confirm("Projeler formunun tüm verilerini silmek üzeresiniz emin misiniz?") === true) {
+            var CVFullPath = []
+            Firebase.storageRef.child("Portfoyler/").listAll()
+                .then(function (res) {
+                    if (res.items.length > 0) {
+                        for (let i = 0; i < res.items.length; i++) {
+                            CVFullPath.push(res.items[i].fullPath)
+                        }
+                        console.log(CVFullPath)
+                    }
+                })
+                .then(function () {
+                    if (CVFullPath != undefined) {
+                        for (let i = 0; i < CVFullPath.length; i++) {
+                            var desertRef = Firebase.storageRef.child(CVFullPath[i]);
+                            desertRef.delete().then(function () {
+                            }).catch(function (error) {
+                            });
+                        }
+                    }
+                })
+
+
+            Firebase.db.collection("Admin").doc("ProjeBilgileri").delete()
+                .then(function () {
+                    alert("Projeler formunun tüm verileri silinmiştir.")
+                    window.location.reload()
+                })
+                .catch(function (error) {
+                    alert(error)
+                })
+        }
+    },
+
+    deleteTamalananProjeler({ dispatch }) {
+        Firebase.db.collection('Admin').doc("ProjeBilgileri").update({
+            TamamlananProjeler: firestore.FieldValue.delete()
+        })
+            .then(function () {
+                dispatch("getFireProjelerFormu");
+            })
+    },
+
+    deletePortfolioKayitlari({ dispatch }) {
+        var CVFullPath = []
+        Firebase.storageRef.child("Portfoyler/").listAll()
+            .then(function (res) {
+                if (res.items.length > 0) {
+                    for (let i = 0; i < res.items.length; i++) {
+                        CVFullPath.push(res.items[i].fullPath)
+                    }
+                    console.log(CVFullPath)
+                }
+            })
+            .then(function () {
+                if (CVFullPath != undefined) {
+                    for (let i = 0; i < CVFullPath.length; i++) {
+                        var desertRef = Firebase.storageRef.child(CVFullPath[i]);
+                        desertRef.delete().then(function () {
+                        }).catch(function (error) {
+                        });
+                    }
+                }
+            })
+        Firebase.db.collection('Admin').doc("ProjeBilgileri").update({
+            portfoyler: firestore.FieldValue.delete()
+        })
+            .then(function () {
+                dispatch("getFireProjelerFormu");
+            })
+    },
+
+    deletetekTamamlananProje({state}, index) {
+        let tamamlananProjelerList = [];
+        state.tamamlananProjelerDTO.splice(index, 1);
+        tamamlananProjelerList = state.tamamlananProjelerDTO
+        if (state.isPageProjectsFullDTO) {
+            Firebase.db.collection('Admin').doc('ProjeBilgileri').update({
+                "TamamlananProjeler": tamamlananProjelerList
+            });
+        }
+    },
+
+    changetProjeToFire({ state }, data) {
+        state.tamamlananProjelerDTO[data.changeTamamlananProjelerIndex] = data.changeTamamlananProjeler;
+        Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
+            "TamamlananProjeler": state.tamamlananProjelerDTO
+        })
+            .then(function () {
+                alert("Bilgi güncelleme işleminiz tamamlanmıştır.");
+            });
     }
 }
 
