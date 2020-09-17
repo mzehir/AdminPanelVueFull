@@ -204,7 +204,7 @@ const actions = {
             })
     },
 
-    deletetekTamamlananProje({state}, index) {
+    deletetekTamamlananProje({ state }, index) {
         let tamamlananProjelerList = [];
         state.tamamlananProjelerDTO.splice(index, 1);
         tamamlananProjelerList = state.tamamlananProjelerDTO
@@ -223,6 +223,50 @@ const actions = {
             .then(function () {
                 alert("Bilgi güncelleme işleminiz tamamlanmıştır.");
             });
+    },
+
+    changePortfolioToFire({ dispatch, state }, data) {
+        if (data.changePortfoyFoto == undefined || data.changePortfoyFoto == "") {
+            state.portfoyDTO[data.changePortfolioIndex] = data.changePortfolio;
+            Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
+                "portfoyler": state.portfoyDTO
+            })
+                .then(function () {
+                    dispatch("getFireProjelerFormu");
+                })
+        }
+        else {
+            console.log(data.changePortfoyFoto.name);
+            if (state.portfoyDTO) {
+                for (let i = 0; i < state.portfoyDTO.length; i++) {
+                    if (state.portfoyDTO[i].portfoyFotoName == data.changePortfoyFoto.name) {
+                        alert("HATA!!!" + " " + data.changePortfoyFoto.name + " " + "fotoğraf ismiyle daha önce yükleme yaptınız. Lütfen fotoğraf ismini değiştiriniz.")
+                        return;
+                    }
+                };
+            }
+            var desertRef = Firebase.storageRef.child('Portfoyler/' + data.changePortfolio.portfoyFotoName);
+            desertRef.delete()
+                .then(function () {
+                    Firebase.storage.ref(`Portfoyler/${data.changePortfoyFoto.name}`).put(data.changePortfoyFoto)
+                        .then(function (res) {
+                            Firebase.storageRef.child(res.ref.fullPath).getDownloadURL()
+                                .then(function (res2) {
+                                    data.changePortfolio.portfoyFotoUrl = res2
+                                    data.changePortfolio.portfoyFotoName = data.changePortfoyFoto.name
+                                })
+                                .then(function () {
+                                    state.portfoyDTO[data.changePortfolioIndex] = data.changePortfolio;
+                                    Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
+                                        "portfoyler": state.portfoyDTO
+                                    })
+                                        .then(function () {
+                                            dispatch("getFireProjelerFormu");
+                                        })
+                                })
+                        })
+                })
+        }
     }
 }
 

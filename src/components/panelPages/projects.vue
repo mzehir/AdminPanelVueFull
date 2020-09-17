@@ -251,6 +251,7 @@
                       class="btn btn-primary"
                       data-toggle="modal"
                       data-target="#exampleModa2"
+                      @click="portfolioGuncelle(index)"
                     >Güncelle</button>
                   </td>
                   <td>
@@ -391,6 +392,7 @@
                 class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
                 type="text"
                 placeholder="Fotoğrafa verilebilecek bir başlık"
+                v-model="changePortfolio.portfoyBasligi"
               />
             </div>
             <div class="row mb-4">
@@ -401,6 +403,7 @@
                 class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
                 type="text"
                 placeholder="Fotoğrafla ilgili kısa bilgilendirme"
+                v-model="changePortfolio.portfoyKisaAciklama"
               />
             </div>
             <div class="row mb-4">
@@ -411,6 +414,7 @@
                 class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
                 type="text"
                 placeholder="Fotoğrafla ilgili tam bilgilendirme"
+                v-model="changePortfolio.portfoyUzunAciklama"
               />
             </div>
             <div class="row mb-4">
@@ -421,6 +425,7 @@
                 class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
                 type="text"
                 placeholder="Fotoğrafa ait müşteri bilgisi"
+                v-model="changePortfolio.musteriBilgisi"
               />
             </div>
             <div class="row mb-4">
@@ -431,6 +436,7 @@
                 class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
                 type="text"
                 placeholder="Projenin tamamlanma tarihi"
+                v-model="changePortfolio.tamamlanmaTarihi"
               />
             </div>
 
@@ -438,12 +444,17 @@
               <span class="col-xs-12 col-sm-12 col-md-3 text-left">
                 <strong>Proje Fotoğrafı:</strong>
               </span>
-              <input class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0" type="file" placeholder />
+              <input
+                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0"
+                type="file"
+                placeholder
+                @change="fotoYakalaGuncelle($event)"
+              />
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" @click="changePortfolioKaydet">Kaydet</button>
           </div>
         </div>
       </div>
@@ -476,6 +487,10 @@ export default {
 
       changeTamamlananProjeler: [],
       changeTamamlananProjelerIndex: "",
+
+      changePortfolio: [],
+      changePortfolioIndex: "",
+      changePortfoyFoto: "",
     };
   },
   methods: {
@@ -532,6 +547,25 @@ export default {
       this.$store.dispatch("changetProjeToFire", {
         changeTamamlananProjeler: this.changeTamamlananProjeler,
         changeTamamlananProjelerIndex: this.changeTamamlananProjelerIndex,
+      });
+    },
+
+    portfolioGuncelle(index) {
+      for (let i = 0; i < this.$store.state.projects.portfoyDTO.length; i++) {
+        this.changePortfolio = this.$store.state.projects.portfoyDTO[index];
+        this.changePortfolioIndex = index;
+      }
+    },
+
+    fotoYakalaGuncelle(event) {
+      this.changePortfoyFoto = event.target.files[0];
+    },
+
+    changePortfolioKaydet() {
+      this.$store.dispatch("changePortfolioToFire", {
+        changePortfolio: this.changePortfolio,
+        changePortfolioIndex: this.changePortfolioIndex,
+        changePortfoyFoto: this.changePortfoyFoto,
       });
     },
   },
