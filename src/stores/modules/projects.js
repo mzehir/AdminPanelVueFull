@@ -140,7 +140,6 @@ const actions = {
                         for (let i = 0; i < res.items.length; i++) {
                             CVFullPath.push(res.items[i].fullPath)
                         }
-                        console.log(CVFullPath)
                     }
                 })
                 .then(function () {
@@ -183,7 +182,6 @@ const actions = {
                     for (let i = 0; i < res.items.length; i++) {
                         CVFullPath.push(res.items[i].fullPath)
                     }
-                    console.log(CVFullPath)
                 }
             })
             .then(function () {
@@ -212,6 +210,19 @@ const actions = {
             Firebase.db.collection('Admin').doc('ProjeBilgileri').update({
                 "TamamlananProjeler": tamamlananProjelerList
             });
+        }
+    },
+
+    deletePortfolioToFire({ state }, index) {
+        let portfoylerList = [];
+        var desertRef = Firebase.storageRef.child('Portfoyler/' + state.portfoyDTO[index].portfoyFotoName);
+        desertRef.delete()
+        state.portfoyDTO.splice(index, 1);
+        portfoylerList = state.portfoyDTO
+        if (state.isPageProjectsFullDTO) {
+            Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
+                "portfoyler": portfoylerList
+            })
         }
     },
 

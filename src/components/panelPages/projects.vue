@@ -255,7 +255,7 @@
                     >Güncelle</button>
                   </td>
                   <td>
-                    <button class="btn btn-danger">Sil</button>
+                    <button @click="tekPortfolioSil(index)" class="btn btn-danger">Sil</button>
                   </td>
                 </tr>
               </tbody>
@@ -528,6 +528,10 @@ export default {
 
     tekTamamlananProjeSil(index) {
       this.$store.dispatch("deletetekTamamlananProje", index);
+    },
+
+    tekPortfolioSil(index) {
+      this.$store.dispatch("deletePortfolioToFire", index)
     },
 
     tProjeGuncelle(index) {
