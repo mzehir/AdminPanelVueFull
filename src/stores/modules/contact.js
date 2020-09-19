@@ -145,31 +145,44 @@ const actions = {
         }
     },
 
-    deleteIletisimBilgileri({ dispatch }) {
-        Firebase.db.collection('Admin').doc("IletisimFormu").update({
-            IletisimBilgileri: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getIletisimFormu");
+    deleteIletisimBilgileri({ dispatch, state }) {
+        if (state.iletisimBilgileriDTO == undefined || state.iletisimBilgileriDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.db.collection('Admin').doc("IletisimFormu").update({
+                IletisimBilgileri: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getIletisimFormu");
+                })
+        }
+
     },
 
-    deleteSMHesaplari({ dispatch }) {
-        Firebase.db.collection('Admin').doc("IletisimFormu").update({
-            SMHesaplari: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getIletisimFormu");
+    deleteSMHesaplari({ dispatch, state }) {
+        if (state.smHesaplariDTO == undefined || state.smHesaplariDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.db.collection('Admin').doc("IletisimFormu").update({
+                SMHesaplari: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getIletisimFormu");
+                })
+        }
     },
 
-    deleteReferanslar({ dispatch }) {
-        Firebase.db.collection('Admin').doc("IletisimFormu").update({
-            Referanslar: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getIletisimFormu");
+    deleteReferanslar({ dispatch, state }) {
+        if (state.referanslarDTO == undefined || state.referanslarDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.db.collection('Admin').doc("IletisimFormu").update({
+                Referanslar: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getIletisimFormu");
+                })
+        }
     },
 
     deleteTekSMHesap({ state }, index) {

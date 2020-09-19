@@ -18,6 +18,8 @@ import skills from '../components/panelPages/skills';
 import projects from '../components/panelPages/projects';
 import contact from '../components/panelPages/contact';
 
+import blog from '../components/panelPages/blog';
+
 export const router = new VueRouter({
     // mode: "history",
     routes: [
@@ -50,6 +52,7 @@ export const router = new VueRouter({
                 { path: "/panelPages/skills", component: skills },
                 { path: "/panelPages/projects", component: projects },
                 { path: "/panelPages/contact", component: contact },
+                { path: "/panelPages/blog", component: blog },
             ]
         },
     ]

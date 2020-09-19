@@ -378,12 +378,22 @@ export default {
       this.$store.dispatch("setFireCoverLetter", this.coverLetter);
     },
     cvDataKaydet(event) {
-      this.cvAndFoto.cv = event.target.files[0];
-      this.cvAndFotoName.cvName = event.target.files[0].name;
+      if (event.target.files.length > 0) {
+        this.cvAndFoto.cv = event.target.files[0];
+        this.cvAndFotoName.cvName = event.target.files[0].name;
+      } else {
+        this.cvAndFoto.cv = "";
+        this.cvAndFotoName.cvName = "";
+      }
     },
     fotoDataKaydet(event) {
-      this.cvAndFoto.foto = event.target.files[0];
-      this.cvAndFotoName.fotoName = event.target.files[0].name;
+      if (event.target.files.length > 0) {
+        this.cvAndFoto.foto = event.target.files[0];
+        this.cvAndFotoName.fotoName = event.target.files[0].name;
+      } else {
+        this.cvAndFoto.foto = "";
+        this.cvAndFotoName.fotoName = "";
+      }
     },
     cvAndFotoKaydet() {
       this.$store.dispatch("setFireCvAndFoto", {

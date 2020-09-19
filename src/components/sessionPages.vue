@@ -31,8 +31,7 @@ export default {
 };
 </script>
 <style scoped>
-.sessionPages {
-}
+
 #sessionPages {
   background-image: url(".././assets/bgimages/bg3.jpg");
   background-size: cover;

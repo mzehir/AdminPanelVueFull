@@ -164,31 +164,43 @@ const actions = {
         }
     },
 
-    deleteYetkinlikler1({ dispatch }) {
-        Firebase.db.collection('Admin').doc("YetkinlikBilgileri").update({
-            AnaYetkinlikler: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getFireYetkinliklerFormu");
+    deleteYetkinlikler1({ dispatch, state }) {
+        if (state.AnaYetkinliklerDTO == undefined || state.AnaYetkinliklerDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.db.collection('Admin').doc("YetkinlikBilgileri").update({
+                AnaYetkinlikler: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getFireYetkinliklerFormu");
+                })
+        }
     },
 
-    deleteYetkinlikler2({ dispatch }) {
-        Firebase.db.collection('Admin').doc("YetkinlikBilgileri").update({
-            YanYetkinlikler: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getFireYetkinliklerFormu");
+    deleteYetkinlikler2({ dispatch, state }) {
+        if (state.YanYetkinliklerDTO == undefined || state.YanYetkinliklerDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.db.collection('Admin').doc("YetkinlikBilgileri").update({
+                YanYetkinlikler: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getFireYetkinliklerFormu");
+                })
+        }
     },
 
-    deleteYabanciDiller({ dispatch }) {
-        Firebase.db.collection('Admin').doc("YetkinlikBilgileri").update({
-            YabanciDiller: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getFireYetkinliklerFormu");
+    deleteYabanciDiller({ dispatch, state }) {
+        if (state.YabanciDillerDTO == undefined || state.YanYetkinliklerDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.db.collection('Admin').doc("YetkinlikBilgileri").update({
+                YabanciDiller: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getFireYetkinliklerFormu");
+                })
+        }
     },
 
     deleteYetkinlik1({ state }, index) {

@@ -44,11 +44,6 @@
         </p>
       </div>
     </form>
-    <!-- <div>
-      <a href>
-        <i class="fa fa-check fa-lg" aria-hidden="true"></i>
-      </a>
-    </div> -->
   </div>
 </template>
 <script>
@@ -68,9 +63,6 @@ export default {
 }
 .bg-color:hover {
   background: rgb(62, 69, 81);
-}
-.submitbtn {
-  /* transition: 1s; */
 }
 .submitbtn:hover {
   animation: flipV 1s linear;

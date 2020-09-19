@@ -14,6 +14,7 @@ const getters = {
 const mutations = {
     setEgitimBilgileriFormuDTO(state, data) {
         state.OkulBilgileriDTO = data.OkunanOkullar;
+        console.log(data.OkunanOkullar)
     },
 
     isPageEducationFullDTO(state, data) {
@@ -77,13 +78,17 @@ const actions = {
         }
     },
 
-    deleteOkunanOkullar({ dispatch }) {
-        Firebase.db.collection('Admin').doc("EgitimBilgileri").update({
-            OkunanOkullar: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getFireOkulBilgileri");
+    deleteOkunanOkullar({ dispatch, state }) {
+        if (state.OkulBilgileriDTO == undefined || state.OkulBilgileriDTO == "") {
+            alert("Silinecek veri bulunamadı...")
+        } else {
+            Firebase.db.collection('Admin').doc("EgitimBilgileri").update({
+                OkunanOkullar: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getFireOkulBilgileri");
+                })
+        }
     },
 
     deleteOkunanOkul({ state }, index) {
@@ -102,9 +107,9 @@ const actions = {
         Firebase.db.collection("Admin").doc("EgitimBilgileri").set({
             "OkunanOkullar": state.OkulBilgileriDTO
         })
-        .then(function() {
-            alert("Bilgi güncelleme işleminiz tamamlanmıştır.")
-        })
+            .then(function () {
+                alert("Bilgi güncelleme işleminiz tamamlanmıştır.")
+            })
 
 
     }

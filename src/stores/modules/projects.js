@@ -165,41 +165,50 @@ const actions = {
         }
     },
 
-    deleteTamalananProjeler({ dispatch }) {
-        Firebase.db.collection('Admin').doc("ProjeBilgileri").update({
-            TamamlananProjeler: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getFireProjelerFormu");
+    deleteTamalananProjeler({ dispatch, state }) {
+        if (state.tamamlananProjelerDTO == undefined || state.tamamlananProjelerDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.db.collection('Admin').doc("ProjeBilgileri").update({
+                TamamlananProjeler: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getFireProjelerFormu");
+                })
+        }
     },
 
-    deletePortfolioKayitlari({ dispatch }) {
+    deletePortfolioKayitlari({ dispatch, state }) {
         var CVFullPath = []
-        Firebase.storageRef.child("Portfoyler/").listAll()
-            .then(function (res) {
-                if (res.items.length > 0) {
-                    for (let i = 0; i < res.items.length; i++) {
-                        CVFullPath.push(res.items[i].fullPath)
+        if (state.portfoyDTO == undefined || state.portfoyDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.storageRef.child("Portfoyler/").listAll()
+                .then(function (res) {
+                    if (res.items.length > 0) {
+                        for (let i = 0; i < res.items.length; i++) {
+                            CVFullPath.push(res.items[i].fullPath)
+                        }
                     }
-                }
-            })
-            .then(function () {
-                if (CVFullPath != undefined) {
-                    for (let i = 0; i < CVFullPath.length; i++) {
-                        var desertRef = Firebase.storageRef.child(CVFullPath[i]);
-                        desertRef.delete().then(function () {
-                        }).catch(function (error) {
-                        });
+                })
+                .then(function () {
+                    if (CVFullPath != undefined) {
+                        for (let i = 0; i < CVFullPath.length; i++) {
+                            var desertRef = Firebase.storageRef.child(CVFullPath[i]);
+                            desertRef.delete().then(function () {
+                            }).catch(function (error) {
+                            });
+                        }
                     }
-                }
+                })
+            Firebase.db.collection('Admin').doc("ProjeBilgileri").update({
+                portfoyler: firestore.FieldValue.delete()
             })
-        Firebase.db.collection('Admin').doc("ProjeBilgileri").update({
-            portfoyler: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getFireProjelerFormu");
-            })
+                .then(function () {
+                    dispatch("getFireProjelerFormu");
+                })
+        }
+
     },
 
     deletetekTamamlananProje({ state }, index) {

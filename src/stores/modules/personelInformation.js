@@ -265,22 +265,32 @@ const actions = {
         }
     },
 
-    deletePersonelBilgileri({ dispatch }) {
-        Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
-            PersonelBilgileri: firestore.FieldValue.delete()
-        }).then(function () {
-            alert("Personel bilgileri adlı veriler silinmiştir.");
-            dispatch("getFireKisiselBilgiFormu");
-        })
+    deletePersonelBilgileri({ dispatch, state }) {
+        if (state.PersonelBilgileriDTO == undefined || state.PersonelBilgileriDTO == "") {
+            alert("Silinecek veri bulunamadı...")
+        } else {
+            Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
+                PersonelBilgileri: firestore.FieldValue.delete()
+            }).then(function () {
+                alert("Personel bilgileri adlı veriler silinmiştir.");
+                dispatch("getFireKisiselBilgiFormu");
+            })
+        }
+
     },
 
-    deleteHobiler({ dispatch }) {
-        Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
-            Hobiler: firestore.FieldValue.delete()
-        }).then(function () {
-            alert("Hobiler adlı veriler silinmiştir.");
-            dispatch("getFireKisiselBilgiFormu");
-        })
+    deleteHobiler({ dispatch, state }) {
+        if (state.HobbiesDTO == undefined || state.HobbiesDTO == "") {
+            alert("Silinecek veri bulunamadı...")
+        } else {
+            Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
+                Hobiler: firestore.FieldValue.delete()
+            }).then(function () {
+                alert("Hobiler adlı veriler silinmiştir.");
+                dispatch("getFireKisiselBilgiFormu");
+            })
+        }
+
     },
 
     deleteHobi({ state }, index) {
@@ -294,13 +304,18 @@ const actions = {
         }
     },
 
-    deleteOnYazi({ dispatch }) {
-        Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
-            OnYazi: firestore.FieldValue.delete()
-        }).then(function () {
-            alert("Ön yazı adlı veriler silinmiştir.");
-            dispatch("getFireKisiselBilgiFormu");
-        })
+    deleteOnYazi({ dispatch, state }) {
+        if (state.CoverLetterDTO == undefined || state.CoverLetterDTO == "") {
+            alert("Silinecek veri bulunamadı...")
+        } else {
+            Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
+                OnYazi: firestore.FieldValue.delete()
+            }).then(function () {
+                alert("Ön yazı adlı veriler silinmiştir.");
+                dispatch("getFireKisiselBilgiFormu");
+            })
+        }
+
     },
 
     deleteCvAndFoto({ }) {

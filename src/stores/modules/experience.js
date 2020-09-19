@@ -77,13 +77,17 @@ const actions = {
         }
     },
 
-    deleteCalisilanFirmalar({ dispatch }) {
-        Firebase.db.collection('Admin').doc("FirmaBilgileri").update({
-            CalisilanFirmalar: firestore.FieldValue.delete()
-        })
-            .then(function () {
-                dispatch("getFireFirmaBilgileriFormu");
+    deleteCalisilanFirmalar({ dispatch, state }) {
+        if (state.FirmaBilgileriDTO == undefined || state.FirmaBilgileriDTO == "") {
+            alert("Silinecek veri bulunamadı...")
+        } else {
+            Firebase.db.collection('Admin').doc("FirmaBilgileri").update({
+                CalisilanFirmalar: firestore.FieldValue.delete()
             })
+                .then(function () {
+                    dispatch("getFireFirmaBilgileriFormu");
+                })
+        }
     },
 
     deleteCalisilanFirma({ state }, index) {
@@ -102,9 +106,9 @@ const actions = {
         Firebase.db.collection("Admin").doc("FirmaBilgileri").set({
             "CalisilanFirmalar": state.FirmaBilgileriDTO
         })
-        .then(function() {
-            alert("Bilgi güncelleme işleminiz tamamlanmıştır.")
-        })
+            .then(function () {
+                alert("Bilgi güncelleme işleminiz tamamlanmıştır.")
+            })
 
 
     }

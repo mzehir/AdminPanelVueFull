@@ -30,7 +30,7 @@
           <router-link tag="a" to="/panelPages/projects" @click.native="navbarLinkClick">Projeler</router-link>
         </li>
         <li>
-          <a href="#">Blog</a>
+          <router-link tag="a" to="/panelPages/blog" @click.native="navbarLinkClick">Blog</router-link>
         </li>
         <li>
           <router-link tag="a" to="/panelPages/contact" @click.native="navbarLinkClick">İletişim</router-link>
