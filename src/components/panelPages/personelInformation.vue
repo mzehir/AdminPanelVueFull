@@ -215,7 +215,7 @@
             <div class="col-md-6">
               <img class="img-fluid" height="100" width="100" src="../.././assets/pdfBg.png" />
               <br />
-              <button class="btn btn-outline-danger btn-lg rounded-circle">
+              <button @click="fotoSil" class="btn btn-outline-danger btn-lg rounded-circle">
                 <i class="fas fa-trash-alt"></i>
               </button>
             </div>
@@ -407,12 +407,9 @@ export default {
     },
     cvKaydet() {
       this.$store.dispatch("setFireCv", this.cvBilgisi);
-      // console.log(this.cvBilgisi);
     },
-
     fotoKaydet() {
       this.$store.dispatch("setFireFoto", this.fotoBilgisi);
-      // console.log(this.fotoBilgisi);
     },
 
     kisiselBilgiFormuSil() {
@@ -437,15 +434,26 @@ export default {
     onYaziSil() {
       this.$store.dispatch("deleteOnYazi");
     },
-
     cvSil() {
-      this.$store.dispatch("deleteFireCv");
-      // alert("cv sil")
+      if (
+        this.$store.state.personelInformation.urlCv == undefined ||
+        this.$store.state.personelInformation.urlCv == ""
+      ) {
+        alert("Silinecek veri bulunamadı...");
+      } else {
+        this.$store.dispatch("deleteFireCv", "silVeDur");
+      }
     },
-
-    // fotoSil() {
-    //   this.$store.dispatch("deleteFoto");
-    // },
+    fotoSil() {
+      if (
+        this.$store.state.personelInformation.urlFoto == undefined ||
+        this.$store.state.personelInformation.urlFoto == ""
+      ) {
+        alert("Silinecek veri bulunamadı...");
+      } else {
+        this.$store.dispatch("deleteFireFoto", "silVeDur");
+      }
+    },
   },
   computed: {
     getPersonelBilgileri() {

@@ -9,6 +9,8 @@ const state = {
     isPageFullDTO: false,
     fullPathCv: "",
     urlCv: "",
+    fullPathFoto: "",
+    urlFoto: ""
 }
 
 const getters = {
@@ -26,6 +28,9 @@ const mutations = {
         state.CoverLetterDTO = data.OnYazi;
         state.fullPathCv = data.cvFullPath;
         state.urlCv = data.cvUrl;
+
+        state.fullPathFoto = data.fotoFullPath;
+        state.urlFoto = data.fotoUrl
     },
 }
 
@@ -161,13 +166,22 @@ const actions = {
     },
 
     deleteFireCv({ dispatch, state }, data) {
-        console.log(data)
-        console.log(state.fullPathCv)
-        // var desertRef = Firebase.storageRef.child(state.fullPathCv);
-        // desertRef.delete()
-        //     .then(function () {
-        //         dispatch("sendFireCv", data)
-        //     })
+        var desertRef = Firebase.storageRef.child(state.fullPathCv);
+        desertRef.delete()
+            .then(function () {
+                if (data == "silVeDur") {
+                    Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
+                        cvFullPath: firestore.FieldValue.delete(),
+                        cvUrl: firestore.FieldValue.delete()
+                    })
+                        .then(function () {
+                            dispatch("getFireKisiselBilgiFormu")
+                            alert("CV dosyası silindi.");
+                        })
+                } else {
+                    dispatch("sendFireCv", data)
+                }
+            })
     },
 
     sendFireCv({ state, dispatch }, data) {
@@ -201,11 +215,69 @@ const actions = {
             })
     },
 
+
     setFireFoto({ state, dispatch }, data) {
-        console.log(data)
         if (data.fotoFile == "" || data.fotoName == "") {
-            alert("Kaydedilecek dosya bulunamadı...")
+            alert("Kaydedilecek dosya bulunamadı...");
         }
+        else {
+            if (state.fullPathFoto == "" || state.fullPathFoto == undefined) {
+                dispatch("sendFireFoto", data);
+            }
+            else {
+                dispatch("deleteFireFoto", data);
+            }
+        }
+    },
+
+    deleteFireFoto({ dispatch, state }, data) {
+        var desertRef = Firebase.storageRef.child(state.fullPathFoto);
+        desertRef.delete()
+            .then(function () {
+                if (data == "silVeDur") {
+                    Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
+                        fotoFullPath: firestore.FieldValue.delete(),
+                        fotoUrl: firestore.FieldValue.delete()
+                    })
+                        .then(function () {
+                            dispatch("getFireKisiselBilgiFormu")
+                            alert("Profil fotoğrafı silindi.");
+                        })
+                } else {
+                    dispatch("sendFireFoto", data)
+                }
+            })
+    },
+
+    sendFireFoto({ state, dispatch }, data) {
+        Firebase.storage.ref(`FOTO/${data.fotoName}`).put(data.fotoFile)
+            .then(function (res) {
+                dispatch("getFireFoto", res.ref.fullPath);
+            })
+    },
+
+    getFireFoto({ state, dispatch }, data) {
+        Firebase.storageRef.child(data).getDownloadURL()
+            .then(function (res) {
+                if (state.isPageFullDTO) {
+                    Firebase.db.collection("Admin").doc("KisiselBilgiler").update({
+                        "fotoFullPath": data,
+                        "fotoUrl": res
+                    }).then(function () {
+                        alert("Profil fotoğrafı kaydedilmiştir.");
+                        dispatch("getFireKisiselBilgiFormu");
+                    })
+                }
+                else {
+                    Firebase.db.collection("Admin").doc("KisiselBilgiler").set({
+                        "fotoFullPath": data,
+                        "fotoUrl": res
+                    }).then(function () {
+                        alert("Profil fotoğrafı kaydedilmiştir.");
+                        dispatch("getFireKisiselBilgiFormu");
+                    })
+                }
+            })
     },
 
 
@@ -221,7 +293,7 @@ const actions = {
                 .catch(function (error) {
                     alert(error)
                 })
-            dispatch("deleteCvAndFoto")
+            dispatch("deleteFireCv", "hepsiniSil");
         }
     },
 
