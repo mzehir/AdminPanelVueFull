@@ -69,7 +69,6 @@ const actions = {
             }
         }
         else {
-            debugger
             yetkinlikler1List.push(data);
             Firebase.db.collection("Admin").doc("YetkinlikBilgileri").set({
                 "AnaYetkinlikler": yetkinlikler1List
@@ -82,7 +81,6 @@ const actions = {
 
     setFireYetkinlik2({ dispatch }, data) {
         let yetkinlikler2List = [];
-
         if (state.isPageYetkinlikFullDTO) {
             if (state.YanYetkinliklerDTO) {
                 for (let i = 0; i < state.YanYetkinliklerDTO.length; i++) {
@@ -116,7 +114,6 @@ const actions = {
     },
 
     setFireYabanciDil({ dispatch }, data) {
-        console.log(data);
         let yabanciDilList = [];
         if (state.isPageYetkinlikFullDTO) {
             if (state.YabanciDillerDTO) {
@@ -257,7 +254,6 @@ const actions = {
     },
 
     changeYabanciDil({ state }, data) {
-        console.log(data)
         state.YabanciDillerDTO[data.changeYabanciDilIndex] = data.changeYabanciDil;
         Firebase.db.collection("Admin").doc("YetkinlikBilgileri").update({
             "YabanciDiller": state.YabanciDillerDTO

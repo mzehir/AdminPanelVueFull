@@ -14,7 +14,6 @@ const getters = {
 const mutations = {
     setEgitimBilgileriFormuDTO(state, data) {
         state.OkulBilgileriDTO = data.OkunanOkullar;
-        console.log(data.OkunanOkullar)
     },
 
     isPageEducationFullDTO(state, data) {
