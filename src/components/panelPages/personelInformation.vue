@@ -165,11 +165,17 @@
               <strong>CV:</strong>
             </span>
             <input
-              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control-file"
+              class="col-xs-12 col-sm-12 col-md-6 pr-3 ml-0 pb-3 pt-1 form-control-file"
               type="file"
               placeholder="Bu alandan cv'nizi yükleyiniz."
-              @change="cvDataKaydet($event)"
+              @change="cvDataTut($event)"
             />
+            <button
+              @click="cvKaydet"
+              class="btn btn-outline-success btn-lg rounded-circle ml-4 mt-0"
+            >
+              <i class="fas fa-check-circle"></i>
+            </button>
           </div>
 
           <div class="row mb-4">
@@ -177,15 +183,17 @@
               <strong>Fotoğraf:</strong>
             </span>
             <input
-              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control-file"
+              class="col-xs-12 col-sm-12 col-md-6 pr-3 ml-0 pb-3 pt-1 form-control-file"
               type="file"
               placeholder="Bu alandan cv'nizi yükleyiniz."
-              @change="fotoDataKaydet($event)"
+              @change="fotoDataTut($event)"
             />
-          </div>
-
-          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="cvAndFotoKaydet" class="btn btn-success btn-block mt-3">Kaydet</button>
+            <button
+              @click="fotoKaydet"
+              class="btn btn-outline-success btn-lg rounded-circle ml-4 mt-0"
+            >
+              <i class="fas fa-check-circle"></i>
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -198,17 +206,19 @@
 
           <div class="row mb-4">
             <div class="col-md-6">
-              <p class="pdfBg">
-                <a :href="getCv">CV'yi görüntüle</a>
-              </p>
+              <img class="img-fluid" height="100" width="100" src="../.././assets/pdfBg.png" />
+              <br />
+              <button @click="cvSil" class="btn btn-outline-danger btn-lg rounded-circle">
+                <i class="fas fa-trash-alt"></i>
+              </button>
             </div>
-            <p class="col-md-6">
-              <img :src="getFoto" height="100" width="100" />
-            </p>
-          </div>
-
-          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="cvAndFotoSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <div class="col-md-6">
+              <img class="img-fluid" height="100" width="100" src="../.././assets/pdfBg.png" />
+              <br />
+              <button class="btn btn-outline-danger btn-lg rounded-circle">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -351,12 +361,12 @@ export default {
         hobiInnerHtml: "",
       },
       coverLetter: "",
-      cvAndFoto: {
-        cv: "",
-        foto: "",
-      },
-      cvAndFotoName: {
+      cvBilgisi: {
+        cvFile: "",
         cvName: "",
+      },
+      fotoBilgisi: {
+        fotoFile: "",
         fotoName: "",
       },
     };
@@ -377,29 +387,32 @@ export default {
     onYaziKaydet() {
       this.$store.dispatch("setFireCoverLetter", this.coverLetter);
     },
-    cvDataKaydet(event) {
+    cvDataTut(event) {
       if (event.target.files.length > 0) {
-        this.cvAndFoto.cv = event.target.files[0];
-        this.cvAndFotoName.cvName = event.target.files[0].name;
+        this.cvBilgisi.cvFile = event.target.files[0];
+        this.cvBilgisi.cvName = event.target.files[0].name;
       } else {
-        this.cvAndFoto.cv = "";
-        this.cvAndFotoName.cvName = "";
+        this.cvBilgisi.cvFile = "";
+        this.cvBilgisi.cvName = "";
       }
     },
-    fotoDataKaydet(event) {
+    fotoDataTut(event) {
       if (event.target.files.length > 0) {
-        this.cvAndFoto.foto = event.target.files[0];
-        this.cvAndFotoName.fotoName = event.target.files[0].name;
+        this.fotoBilgisi.fotoFile = event.target.files[0];
+        this.fotoBilgisi.fotoName = event.target.files[0].name;
       } else {
-        this.cvAndFoto.foto = "";
-        this.cvAndFotoName.fotoName = "";
+        this.fotoBilgisi.fotoFile = "";
+        this.fotoBilgisi.fotoName = "";
       }
     },
-    cvAndFotoKaydet() {
-      this.$store.dispatch("setFireCvAndFoto", {
-        cvAndFoto: this.cvAndFoto,
-        cvAndFotoName: this.cvAndFotoName,
-      });
+    cvKaydet() {
+      this.$store.dispatch("setFireCv", this.cvBilgisi);
+      // console.log(this.cvBilgisi);
+    },
+
+    fotoKaydet() {
+      this.$store.dispatch("setFireFoto", this.fotoBilgisi);
+      // console.log(this.fotoBilgisi);
     },
 
     kisiselBilgiFormuSil() {
@@ -424,9 +437,15 @@ export default {
     onYaziSil() {
       this.$store.dispatch("deleteOnYazi");
     },
-    cvAndFotoSil() {
-      this.$store.dispatch("deleteCvAndFoto");
+
+    cvSil() {
+      this.$store.dispatch("deleteFireCv");
+      // alert("cv sil")
     },
+
+    // fotoSil() {
+    //   this.$store.dispatch("deleteFoto");
+    // },
   },
   computed: {
     getPersonelBilgileri() {
@@ -438,16 +457,16 @@ export default {
     getOnYazi() {
       return this.$store.state.personelInformation.CoverLetterDTO;
     },
-    getCv() {
-      return this.$store.state.personelInformation.Cv;
-    },
-    getFoto() {
-      return this.$store.state.personelInformation.foto;
-    },
+    // getCv() {
+    //   return this.$store.state.personelInformation.Cv;
+    // },
+    // getFoto() {
+    //   return this.$store.state.personelInformation.foto;
+    // },
   },
   created() {
     this.$store.dispatch("getFireKisiselBilgiFormu");
-    this.$store.dispatch("getFireCVAndFoto");
+    // this.$store.dispatch("getFireCVAndFoto");
 
     var hash = window.location.hash;
     var newString01 = hash.replace("#", "");
@@ -469,8 +488,8 @@ span {
 }
 .pdfBg {
   background-image: url("../.././assets/pdfBg.png");
-  height: 100px;
+  /* height: 100px;
   width: 100px;
-  margin-left: 50px;
+  margin-left: 50px; */
 }
 </style>

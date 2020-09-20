@@ -6,9 +6,9 @@ const state = {
     PersonelBilgileriDTO: [],
     HobbiesDTO: [],
     CoverLetterDTO: "",
-    Cv: "",
-    foto: "",
     isPageFullDTO: false,
+    fullPathCv: "",
+    urlCv: "",
 }
 
 const getters = {
@@ -24,14 +24,8 @@ const mutations = {
         state.PersonelBilgileriDTO = data.PersonelBilgileri;
         state.HobbiesDTO = data.Hobiler;
         state.CoverLetterDTO = data.OnYazi;
-    },
-
-    setCVDTO(state, CvURL) {
-        state.Cv = CvURL
-    },
-
-    setFotoDTO(state, fotoURL) {
-        state.foto = fotoURL
+        state.fullPathCv = data.cvFullPath;
+        state.urlCv = data.cvUrl;
     },
 }
 
@@ -54,46 +48,6 @@ const actions = {
         }).catch(function (error) {
             console.log(error)
         })
-    },
-
-    //  ############################### 
-    //  ############################### 
-    //  CV VE FOTO BİLGİLERİNİN GETİRİLMESİ 
-    //  ############################### 
-    //  ############################### 
-    getFireCVAndFoto({ commit }) {
-        var CVFullPath;
-        var FotoFullPath;
-        Firebase.storageRef.child("CV/").listAll()
-            .then(function (res) {
-                if (res.items.length > 0) {
-                    CVFullPath = res.items[0].fullPath;
-                }
-            })
-            .then(function () {
-                if (CVFullPath) {
-                    Firebase.storageRef.child(CVFullPath).getDownloadURL()
-                        .then(function (res2) {
-                            commit("setCVDTO", res2)
-                        })
-                }
-            })
-
-        Firebase.storageRef.child("ProfilFoto/").listAll()
-            .then(function (res) {
-                if (res.items.length > 0) {
-                    FotoFullPath = res.items[0].fullPath;
-                }
-            })
-            .then(function () {
-                if (FotoFullPath) {
-                    Firebase.storageRef.child(FotoFullPath).getDownloadURL()
-                        .then(function (res2) {
-                            commit("setFotoDTO", res2)
-                        })
-                }
-            })
-
     },
 
     // *****************************************************************************************************************************************************************
@@ -189,66 +143,72 @@ const actions = {
 
     //  ############################### 
     //  ############################### 
-    //  CV VE PROFİL FOTOĞRAFI BİLGİLERİNİN GÖNDERİLMESİ 
+    //  CV VE PROFİL FOTOĞRAFI BİLGİLERİ FONKSİYONLARI
     //  ############################### 
     //  ############################### 
-    setFireCvAndFoto({ dispatch }, data) {
-        if (data.cvAndFoto.cv == "" && data.cvAndFoto.foto == "") {
-            alert("Lütfen yüklemek istediğiniz döküman ya da dökümanları seçiniz.")
+    setFireCv({ state, dispatch }, data) {
+        if (data.cvFile == "" || data.cvName == "") {
+            alert("Kaydedilecek dosya bulunamadı...");
         }
-
-        else if (data.cvAndFoto.cv !== "" && data.cvAndFoto.foto == "") {
-            Firebase.storage.ref(`CV/${data.cvAndFoto.cv.name}`).put(data.cvAndFoto.cv)
-                .then(function () {
-                    dispatch("getFireKisiselBilgiFormu");
-                    dispatch("getFireCVAndFoto");
-                    alert("Cv yükleme işleminiz tamamlanmıştır.");
-                })
-
-            if (state.isPageFullDTO) {
-                Firebase.db.collection("Admin").doc("KisiselBilgiler").update({ "cvName": data.cvAndFotoName.cvName });
-            }
-            else {
-                Firebase.db.collection("Admin").doc("KisiselBilgiler").set({ "cvName": data.cvAndFotoName.cvName });
-            }
-
-        }
-
-        else if (data.cvAndFoto.cv == "" && data.cvAndFoto.foto !== "") {
-            Firebase.storage.ref(`ProfilFoto/${data.cvAndFoto.foto.name}`).put(data.cvAndFoto.foto)
-                .then(function () {
-                    dispatch("getFireKisiselBilgiFormu");
-                    dispatch("getFireCVAndFoto");
-                    alert("Profil fotoğrafı yükleme işleminiz tamamlanmıştır.");
-                })
-            if (state.isPageFullDTO) {
-                Firebase.db.collection("Admin").doc("KisiselBilgiler").update({ "fotoName": data.cvAndFotoName.fotoName });
-            }
-            else {
-                Firebase.db.collection("Admin").doc("KisiselBilgiler").set({ "fotoName": data.cvAndFotoName.fotoName });
-            }
-
-        }
-
         else {
-            Firebase.storage.ref(`CV/${data.cvAndFoto.cv.name}`).put(data.cvAndFoto.cv);
-            Firebase.storage.ref(`ProfilFoto/${data.cvAndFoto.foto.name}`).put(data.cvAndFoto.foto)
-                .then(function () {
-                    dispatch("getFireKisiselBilgiFormu");
-                    dispatch("getFireCVAndFoto");
-                    alert("Cv ve profil fotoğrafı yükleme işleminiz tamamlanmıştır.");
-                })
-            if (state.isPageFullDTO) {
-                Firebase.db.collection("Admin").doc("KisiselBilgiler").update({ "cvName": data.cvAndFotoName.cvName });
-                Firebase.db.collection("Admin").doc("KisiselBilgiler").update({ "fotoName": data.cvAndFotoName.fotoName });
+            if (state.fullPathCv == "" || state.fullPathCv == undefined) {
+                dispatch("sendFireCv", data);
             }
             else {
-                Firebase.db.collection("Admin").doc("KisiselBilgiler").set({ "cvName": data.cvAndFotoName.cvName });
-                Firebase.db.collection("Admin").doc("KisiselBilgiler").set({ "fotoName": data.cvAndFotoName.fotoName });
+                dispatch("deleteFireCv", data);
             }
         }
-
     },
+
+    deleteFireCv({ dispatch, state }, data) {
+        console.log(data)
+        console.log(state.fullPathCv)
+        // var desertRef = Firebase.storageRef.child(state.fullPathCv);
+        // desertRef.delete()
+        //     .then(function () {
+        //         dispatch("sendFireCv", data)
+        //     })
+    },
+
+    sendFireCv({ state, dispatch }, data) {
+        Firebase.storage.ref(`CV/${data.cvName}`).put(data.cvFile)
+            .then(function (res) {
+                dispatch("getFireCv", res.ref.fullPath);
+            })
+    },
+
+    getFireCv({ dispatch, state }, data) {
+        Firebase.storageRef.child(data).getDownloadURL()
+            .then(function (res) {
+                if (state.isPageFullDTO) {
+                    Firebase.db.collection("Admin").doc("KisiselBilgiler").update({
+                        "cvFullPath": data,
+                        "cvUrl": res
+                    }).then(function () {
+                        alert("Cv kaydedilmiştir.");
+                        dispatch("getFireKisiselBilgiFormu");
+                    })
+                }
+                else {
+                    Firebase.db.collection("Admin").doc("KisiselBilgiler").set({
+                        "cvFullPath": data,
+                        "cvUrl": res
+                    }).then(function () {
+                        alert("Cv kaydedilmiştir.");
+                        dispatch("getFireKisiselBilgiFormu");
+                    })
+                }
+            })
+    },
+
+    setFireFoto({ state, dispatch }, data) {
+        console.log(data)
+        if (data.fotoFile == "" || data.fotoName == "") {
+            alert("Kaydedilecek dosya bulunamadı...")
+        }
+    },
+
+
 
     // *****************************************************************************************************************************************************************
     deleteKisiselBilgiFormu({ dispatch }) {
@@ -317,46 +277,6 @@ const actions = {
         }
 
     },
-
-    deleteCvAndFoto({ }) {
-        var CVFullPath;
-        var FotoFullPath;
-        Firebase.storageRef.child("CV/").listAll()
-            .then(function (res) {
-                if (res.items.length > 0) {
-                    CVFullPath = res.items[0].fullPath;
-                }
-            })
-            .then(function () {
-                if (CVFullPath != undefined) {
-                    var desertRef = Firebase.storageRef.child(CVFullPath);
-                    // Delete the file
-                    desertRef.delete().then(function () {
-                        // File deleted successfully
-                    }).catch(function (error) {
-                        // Uh-oh, an error occurred!
-                    });
-                }
-            })
-
-        Firebase.storageRef.child("ProfilFoto/").listAll()
-            .then(function (res) {
-                if (res.items.length > 0) {
-                    FotoFullPath = res.items[0].fullPath;
-                }
-            })
-            .then(function () {
-                if (FotoFullPath != undefined) {
-                    var desertRef = Firebase.storageRef.child(FotoFullPath);
-                    // Delete the file
-                    desertRef.delete().then(function () {
-                        // File deleted successfully
-                    }).catch(function (error) {
-                        // Uh-oh, an error occurred!
-                    });
-                }
-            })
-    }
 }
 
 export default {
