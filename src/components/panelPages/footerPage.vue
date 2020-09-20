@@ -6,13 +6,17 @@
           <strong>İLETİŞİM BİLGİLERİ</strong>
         </h4>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-3">
-          <a class="p-3" href>
+          <a class="p-3" href="https://github.com/mzehir" target="_blank">
             <i class="fa fa-github fa-lg" aria-hidden="true"></i>
           </a>
-          <a class="p-3" href>
+          <a
+            class="p-3"
+            href="https://www.linkedin.com/public-profile/in/m%C3%BCmin-zehir-4168481a3/?challengeId=AQHFc9YEM2GoDwAAAXSrwKRUQ2YjgOXCBJfYp_Ivy03Hxu-xfgEMCI7vQMTtiJpFmJPG5b8y8-Bsvg7j4mAVN6b3DxIfEXr6dw&submissionId=cf113b2f-bc81-3616-16b9-29907ce8fe75"
+            target="_blank"
+          >
             <i class="fa fa-linkedin fa-lg" aria-hidden="true"></i>
           </a>
-          <a class="p-3" href>
+          <a class="p-3" href="https://twitter.com/zehir_m_54" target="_blank">
             <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
           </a>
           <a href></a>
@@ -39,7 +43,9 @@
       </div>
     </div>
     <div class="row mt-2">
-      <div class="col-xs-12 col-sm-12 col-md-12 text-center text-secondary">Copyright © 2020. Her Hakkı Saklıdır</div>
+      <div
+        class="col-xs-12 col-sm-12 col-md-12 text-center text-secondary"
+      >Copyright © 2020. Her Hakkı Saklıdır</div>
     </div>
   </div>
 </template>
@@ -58,7 +64,7 @@ export default {
 .footer:hover {
   background: rgb(0, 0, 0);
 }
-.colorText:hover{
+.colorText:hover {
   color: white;
 }
 </style>

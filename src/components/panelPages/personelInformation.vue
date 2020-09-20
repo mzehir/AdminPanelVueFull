@@ -206,14 +206,17 @@
 
           <div class="row mb-4">
             <div class="col-md-6">
-              <img class="img-fluid" height="100" width="100" src="../.././assets/pdfBg.png" />
+              <img v-if="getCv" class="img-fluid" height="100" width="100" src="../.././assets/pdfBg.png" />
+              <br />
+              <a v-if="getCv" :href="getCv" target="_blank">Görüntüle</a>
               <br />
               <button @click="cvSil" class="btn btn-outline-danger btn-lg rounded-circle">
                 <i class="fas fa-trash-alt"></i>
               </button>
             </div>
             <div class="col-md-6">
-              <img class="img-fluid" height="100" width="100" src="../.././assets/pdfBg.png" />
+              <img v-if="getFoto" class="img-fluid" height="100" width="100" :src="getFoto" />
+              <br />
               <br />
               <button @click="fotoSil" class="btn btn-outline-danger btn-lg rounded-circle">
                 <i class="fas fa-trash-alt"></i>
@@ -465,16 +468,15 @@ export default {
     getOnYazi() {
       return this.$store.state.personelInformation.CoverLetterDTO;
     },
-    // getCv() {
-    //   return this.$store.state.personelInformation.Cv;
-    // },
-    // getFoto() {
-    //   return this.$store.state.personelInformation.foto;
-    // },
+    getCv() {
+      return this.$store.state.personelInformation.urlCv;
+    },
+    getFoto() {
+      return this.$store.state.personelInformation.urlFoto;
+    },
   },
   created() {
     this.$store.dispatch("getFireKisiselBilgiFormu");
-    // this.$store.dispatch("getFireCVAndFoto");
 
     var hash = window.location.hash;
     var newString01 = hash.replace("#", "");
