@@ -315,6 +315,42 @@
             <button @click="referanslarSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
           </div>
         </div>
+        <!-- ############################### -->
+        <!-- ############################### -->
+        <!-- HARİTA BÖLÜMÜ -->
+        <!-- ############################### -->
+        <!-- ############################### -->
+        <!-- <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+          <div class="row">
+            <h4
+              class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
+            >Konum Kaydedici</h4>
+          </div>
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>xxx:</strong>
+            </span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
+            <button @click="smHesaplariKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+          </div>
+        </div> -->
+        <!-- ------------------------------- -->
+        <!-- <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2">
+          <div class="row">
+            <h4
+              class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
+            >Konum Gösterici</h4>
+          </div>
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>xxx:</strong>
+            </span>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
+            <button @click="smHesaplariSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+          </div>
+        </div> -->
 
         <div class="col-xs-12 col-sm-12 col-md-12">
           <button
@@ -393,7 +429,7 @@
       </div>
     </div>
     <!-- ------------------------------- -->
-    
+
     <!-- ############################### -->
     <!-- ############################### -->
     <!-- MODAL2 BÖLÜMÜ -->

@@ -283,17 +283,24 @@ const actions = {
 
 
     // *****************************************************************************************************************************************************************
-    deleteKisiselBilgiFormu({ dispatch }) {
+    deleteKisiselBilgiFormu({ dispatch, state }) {
         if (window.confirm("Kişisel bilgi formunun tüm verilerini silmek üzeresiniz emin misiniz?") === true) {
             Firebase.db.collection("Admin").doc("KisiselBilgiler").delete()
                 .then(function () {
-                    alert("Kişisel bilgi formunun tüm verileri silinmiştir.");
-                    window.location.reload();
+                    var desertRef = Firebase.storageRef.child(state.fullPathCv);
+                    desertRef.delete()
+                        .then(function () {
+                            var desertRef2 = Firebase.storageRef.child(state.fullPathFoto);
+                            desertRef2.delete()
+                                .then(function () {
+                                    alert("Kişisel bilgi formunun tüm verileri silinmiştir.");
+                                    window.location.reload();
+                                })
+                        })
                 })
                 .catch(function (error) {
-                    alert(error)
+                    console.log(error + " " + error.message)
                 })
-            dispatch("deleteFireCv", "hepsiniSil");
         }
     },
 
