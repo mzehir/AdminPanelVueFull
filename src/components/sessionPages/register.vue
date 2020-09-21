@@ -60,7 +60,6 @@ export default {
   },
   methods: {
     onSubmit() {
-      debugger
       this.$store.dispatch("newRegister", this.newUser);
     },
   },

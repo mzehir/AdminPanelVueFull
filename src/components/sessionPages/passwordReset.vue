@@ -12,6 +12,7 @@
           <strong>E-posta Adresi:</strong>
         </p>
         <input
+          disabled
           placeholder="E-mail adresinizi giriniz"
           class="col-md-7 text-center text-danger mb-2"
           type="email"
@@ -23,6 +24,7 @@
           <strong>Parola:</strong>
         </p>
         <input
+          disabled
           placeholder="Yeni bir parola giriniz."
           class="col-md-7 text-center text-danger mb-2"
           type="password"
@@ -31,6 +33,7 @@
 
       <div class="footer p-3 row">
         <button
+          disabled
           type="submit"
           class="btn btn-outline-danger btn-sm col-md-4 offset-md-4 submitbtn"
         >Parola Sıfırla</button>

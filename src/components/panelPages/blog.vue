@@ -122,6 +122,7 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
+      
     >
       <div class="modal-dialog">
         <div class="modal-content">
@@ -155,6 +156,48 @@
       </div>
     </div>
     <!-- ------------------------------- -->
+    <!-- ############################### -->
+    <!-- ############################### -->
+    <!-- MODAL AÇIKLAMA BÖLÜMÜ -->
+    <!-- ############################### -->
+    <!-- ############################### -->
+    <div
+      class="modal fade show"
+      id="exampleModal2"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      style="display: block; padding-right: 17px;"
+      
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-danger">
+            <h5 class="modal-title text-white" id="exampleModalLabel">
+              <strong>OOOPPPPSSSSS!!!!!!</strong>
+            </h5>
+            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+              <span @click="modal2Close" aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body pr-4">
+            <div class="row mb-4">
+              <span class="col-xs-12 col-sm-12 col-md-12 text-center">
+                BU SAYFA YAPIM AŞAMASINDADIR. EN KISA SÜREDE FAALİYETE GEÇECEKTİR. YİNEDE DİLERSENİZ BU PENCEREYİ
+                KAPATIP SAYFAYI İNCELEYEBİLİRSİNİZ.
+              </span>
+            </div>
+          </div>
+
+          <div class="modal-footer bg-danger">
+            <button @click="modal2Close" type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            <!-- <button type="button" class="btn btn-success">Kaydet</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------------------- -->
   </div>
 </template>
 
@@ -168,6 +211,12 @@ export default {
         },
     };
   },
+  methods : {
+    modal2Close() {
+      let modal2Elmnt = document.getElementById("exampleModal2");
+      modal2Elmnt.style.display = "none"
+    },
+  }
 };
 </script>
 
