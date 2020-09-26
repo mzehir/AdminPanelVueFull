@@ -4,7 +4,7 @@ import { firestore } from "firebase";
 
 const state = {
     isPageProjectsFullDTO: "",
-    tamamlananProjelerDTO: [],
+    calismaSureciDTO: [],
     portfoyDTO: [],
 }
 
@@ -18,7 +18,7 @@ const mutations = {
     },
 
     setProjelerFormuDTO(state, data) {
-        state.tamamlananProjelerDTO = data.TamamlananProjeler;
+        state.calismaSureciDTO = data.CalismaSureci;
         state.portfoyDTO = data.portfoyler;
     },
 }
@@ -40,39 +40,20 @@ const actions = {
         })
     },
 
-    setFireTamamlananProjeler({ dispatch }, data) {
-        let tamamlananProjelerList = [];
+    setFireCalismaSureci({ dispatch }, data) {
         if (state.isPageProjectsFullDTO) {
-            if (state.tamamlananProjelerDTO) {
-                for (let i = 0; i < state.tamamlananProjelerDTO.length; i++) {
-                    tamamlananProjelerList.push(state.tamamlananProjelerDTO[i])
-                };
-                tamamlananProjelerList.push(data);
-                Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
-                    "TamamlananProjeler": tamamlananProjelerList
-                })
-                    .then(function () {
-                        dispatch("getFireProjelerFormu");
-                    });
-            }
-            else {
-                tamamlananProjelerList.push(data);
-                Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
-                    "TamamlananProjeler": tamamlananProjelerList
-                })
-                    .then(function () {
-                        dispatch("getFireProjelerFormu");
-                    });
-            }
+            Firebase.db.collection('Admin').doc('ProjeBilgileri').update({
+                "CalismaSureci": data
+            }).then(function () {
+                dispatch("getFireProjelerFormu");
+            })
         }
         else {
-            tamamlananProjelerList.push(data);
-            Firebase.db.collection("Admin").doc("ProjeBilgileri").set({
-                "TamamlananProjeler": tamamlananProjelerList
+            Firebase.db.collection('Admin').doc('ProjeBilgileri').set({
+                "CalismaSureci": data
+            }).then(function () {
+                dispatch("getFireProjelerFormu");
             })
-                .then(function () {
-                    dispatch("getFireProjelerFormu");
-                });
         }
     },
 
@@ -165,12 +146,12 @@ const actions = {
         }
     },
 
-    deleteTamalananProjeler({ dispatch, state }) {
-        if (state.tamamlananProjelerDTO == undefined || state.tamamlananProjelerDTO == "") {
+    deleteCalismaSureci({ dispatch, state }) {
+        if (state.calismaSureciDTO == undefined || state.calismaSureciDTO == "") {
             alert("Silinecek veri bulunamadı...");
         } else {
             Firebase.db.collection('Admin').doc("ProjeBilgileri").update({
-                TamamlananProjeler: firestore.FieldValue.delete()
+                CalismaSureci: firestore.FieldValue.delete()
             })
                 .then(function () {
                     dispatch("getFireProjelerFormu");
@@ -211,17 +192,6 @@ const actions = {
 
     },
 
-    deletetekTamamlananProje({ state }, index) {
-        let tamamlananProjelerList = [];
-        state.tamamlananProjelerDTO.splice(index, 1);
-        tamamlananProjelerList = state.tamamlananProjelerDTO
-        if (state.isPageProjectsFullDTO) {
-            Firebase.db.collection('Admin').doc('ProjeBilgileri').update({
-                "TamamlananProjeler": tamamlananProjelerList
-            });
-        }
-    },
-
     deletePortfolioToFire({ state }, index) {
         let portfoylerList = [];
         var desertRef = Firebase.storageRef.child('Portfoyler/' + state.portfoyDTO[index].portfoyFotoName);
@@ -233,16 +203,6 @@ const actions = {
                 "portfoyler": portfoylerList
             })
         }
-    },
-
-    changetProjeToFire({ state }, data) {
-        state.tamamlananProjelerDTO[data.changeTamamlananProjelerIndex] = data.changeTamamlananProjeler;
-        Firebase.db.collection("Admin").doc("ProjeBilgileri").update({
-            "TamamlananProjeler": state.tamamlananProjelerDTO
-        })
-            .then(function () {
-                alert("Bilgi güncelleme işleminiz tamamlanmıştır.");
-            });
     },
 
     changePortfolioToFire({ dispatch, state }, data) {

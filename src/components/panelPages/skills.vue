@@ -4,7 +4,9 @@
       <div class="card-header row bg-dark">
         <h3
           class="col-xs-12 col-sm-12 col-md-12 bg-white p-3 rounded shadow-lg"
-        >Yetkinlikler - Beceriler Formu</h3>
+        >
+          Yetkinlikler - Beceriler Formu
+        </h3>
       </div>
       <div class="card-body row pb-0">
         <!-- ############################### -->
@@ -12,11 +14,15 @@
         <!-- YETKİNLİKLER BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 mb-3 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 mb-3 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Yetkinlikler</h4>
+            >
+              Yetkinlikler
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -30,9 +36,15 @@
             >
               <option class="yetkinlik1" value="fab fa-html5">HTML</option>
               <option class="yetkinlik1" value="fab fa-css3-alt">CSS</option>
-              <option class="yetkinlik1" value="fab fa-js-square">JAVASCRİPT</option>
-              <option class="yetkinlik1" value="fab fa-bootstrap">BOOTSTRAP</option>
-              <option class="yetkinlik1" value="fas fa-database">FİREBASE</option>
+              <option class="yetkinlik1" value="fab fa-js-square">
+                JAVASCRİPT
+              </option>
+              <option class="yetkinlik1" value="fab fa-bootstrap">
+                BOOTSTRAP
+              </option>
+              <option class="yetkinlik1" value="fas fa-database">
+                FİREBASE
+              </option>
               <option class="yetkinlik1" value="fab fa-react">REACTJS</option>
               <option class="yetkinlik1" value="fab fa-vuejs">VUEJS</option>
               <option class="yetkinlik1" value="fab fa-node">NODEJS</option>
@@ -56,7 +68,12 @@
             />
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="yetkinlik1Kaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+            <button
+              @click="yetkinlik1Kaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -64,7 +81,9 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Yetkinlik Kayıtları</h4>
+            >
+              Yetkinlik Kayıtları
+            </h4>
           </div>
 
           <div class="table-responsive">
@@ -80,13 +99,13 @@
               </thead>
               <tbody>
                 <tr :key="index" v-for="(yetkinlik, index) in getYetkinlikler1">
-                  <th scope="row">{{index + 1}}</th>
+                  <th scope="row">{{ index + 1 }}</th>
                   <td>
-                    {{yetkinlik.yetkinlikInnerHtml}}
+                    {{ yetkinlik.yetkinlikInnerHtml }}
                     <br />
                     <i :class="yetkinlik.yetkinlikIconCode"></i>
                   </td>
-                  <td>%{{yetkinlik.yetkinlikSeviyesi}}</td>
+                  <td>%{{ yetkinlik.yetkinlikSeviyesi }}</td>
                   <td>
                     <button
                       type="button"
@@ -94,10 +113,17 @@
                       data-toggle="modal"
                       data-target="#exampleModal1"
                       @click="modelIndexYetkinlik1(index)"
-                    >Güncelle</button>
+                    >
+                      Güncelle
+                    </button>
                   </td>
                   <td>
-                    <button @click="yetkinlik1Sil(index)" class="btn btn-danger">Sil</button>
+                    <button
+                      @click="yetkinlik1Sil(index)"
+                      class="btn btn-danger"
+                    >
+                      Sil
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -105,7 +131,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="yetkinlikler1Sil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="yetkinlikler1Sil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
         <!-- ############################### -->
@@ -113,11 +144,15 @@
         <!-- DİĞER YETKİNLİKLER BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Diğer Yetkinlikler</h4>
+            >
+              Diğer Yetkinlikler
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -131,9 +166,15 @@
             >
               <option class="yetkinlik2" value="fab fa-html5">HTML</option>
               <option class="yetkinlik2" value="fab fa-css3-alt">CSS</option>
-              <option class="yetkinlik2" value="fab fa-js-square">JAVASCRİPT</option>
-              <option class="yetkinlik2" value="fab fa-bootstrap">BOOTSTRAP</option>
-              <option class="yetkinlik2" value="fas fa-database">FİREBASE</option>
+              <option class="yetkinlik2" value="fab fa-js-square">
+                JAVASCRİPT
+              </option>
+              <option class="yetkinlik2" value="fab fa-bootstrap">
+                BOOTSTRAP
+              </option>
+              <option class="yetkinlik2" value="fas fa-database">
+                FİREBASE
+              </option>
               <option class="yetkinlik2" value="fab fa-react">REACTJS</option>
               <option class="yetkinlik2" value="fab fa-vuejs">VUEJS</option>
               <option class="yetkinlik2" value="fab fa-node">NODEJS</option>
@@ -156,7 +197,12 @@
             />
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="yetkinlik2Kaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+            <button
+              @click="yetkinlik2Kaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -164,7 +210,9 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Diğer Yetkinlik Kayıtları</h4>
+            >
+              Diğer Yetkinlik Kayıtları
+            </h4>
           </div>
 
           <div class="table-responsive">
@@ -180,24 +228,31 @@
               </thead>
               <tbody>
                 <tr :key="index" v-for="(yetkinlik, index) in getYetkinlikler2">
-                  <th scope="row">{{index + 1}}</th>
+                  <th scope="row">{{ index + 1 }}</th>
                   <td>
-                    {{yetkinlik.yetkinlikInnerHtmlExtra}}
+                    {{ yetkinlik.yetkinlikInnerHtmlExtra }}
                     <br />
                     <i :class="yetkinlik.yetkinlikIconCodeExtra"></i>
                   </td>
-                  <td>%{{yetkinlik.yetkinlikSeviyesiExtra}}</td>
+                  <td>%{{ yetkinlik.yetkinlikSeviyesiExtra }}</td>
                   <td>
                     <button
                       type="button"
                       class="btn btn-primary"
                       data-toggle="modal"
                       data-target="#exampleModal2"
-                      @click=" modelIndexYetkinlik2(index)"
-                    >Güncelle</button>
+                      @click="modelIndexYetkinlik2(index)"
+                    >
+                      Güncelle
+                    </button>
                   </td>
                   <td>
-                    <button @click="yetkinlik2Sil(index)" class="btn btn-danger">Sil</button>
+                    <button
+                      @click="yetkinlik2Sil(index)"
+                      class="btn btn-danger"
+                    >
+                      Sil
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -205,7 +260,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="yetkinlikler2Sil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="yetkinlikler2Sil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
 
@@ -214,11 +274,15 @@
         <!-- YABANCI DİL BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Yabancı Dil Bilgileri</h4>
+            >
+              Yabancı Dil Bilgileri
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -253,7 +317,12 @@
             />
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="yabanciDilKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+            <button
+              @click="yabanciDilKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -261,7 +330,9 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Yabancı Dil Kayıtları</h4>
+            >
+              Yabancı Dil Kayıtları
+            </h4>
           </div>
 
           <div class="table-responsive">
@@ -276,10 +347,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr :key="index" v-for="(yabanciDil, index) in getYabanciDiller">
-                  <th scope="row">{{index + 1}}</th>
-                  <td>{{yabanciDil.yabanciDilInnerHtml}}</td>
-                  <td>%{{yabanciDil.yabanciDilSeviyesi}}</td>
+                <tr
+                  :key="index"
+                  v-for="(yabanciDil, index) in getYabanciDiller"
+                >
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ yabanciDil.yabanciDilInnerHtml }}</td>
+                  <td>%{{ yabanciDil.yabanciDilSeviyesi }}</td>
                   <td>
                     <button
                       type="button"
@@ -287,10 +361,17 @@
                       data-toggle="modal"
                       data-target="#exampleModal3"
                       @click="modelIndexYabanciDil(index)"
-                    >Güncelle</button>
+                    >
+                      Güncelle
+                    </button>
                   </td>
                   <td>
-                    <button @click="yabanciDilSil(index)" class="btn btn-danger">Sil</button>
+                    <button
+                      @click="yabanciDilSil(index)"
+                      class="btn btn-danger"
+                    >
+                      Sil
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -298,7 +379,131 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="yabanciDillerSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="yabanciDillerSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
+          </div>
+        </div>
+
+        <!-- ############################### -->
+        <!-- ############################### -->
+        <!-- HİZMETLER BÖLÜMÜ -->
+        <!-- ############################### -->
+        <!-- ############################### -->
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
+          <div class="row">
+            <h4
+              class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
+            >
+              Verilen Hizmetler
+            </h4>
+          </div>
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Hizmet:</strong>
+            </span>
+            <select
+              v-model="hizmetler.hizmetIconCode"
+              name
+              id
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+            >
+              <option class="hizmet" value="fas fa-desktop">Web Tasarım</option>
+              <option class="hizmet" value="fas fa-cogs">Web Geliştirme</option>
+              <option class="hizmet" value="fas fa-mobile-alt">
+                Responsive Tasarım
+              </option>
+              <option class="hizmet" value="fas fa-medkit">Hızlı Destek</option>
+              <option class="hizmet" value="fas fa-database">
+                Database Kodlama
+              </option>
+              <option class="hizmet" value="fas fa-server">
+                Server İşlemleri
+              </option>
+              <option class="hizmet" value="fab fa-wordpress">
+                WordPress İşlemleri
+              </option>
+              <option class="hizmet" value="fas fa-book">Özel Ders</option>
+            </select>
+          </div>
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Açıklama:</strong>
+            </span>
+            <textarea
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Verilen hizmet ile alakalı açıklama..."
+              v-model="hizmetler.hizmetDescription"
+            />
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
+            <button
+              @click="hizmetKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
+          </div>
+        </div>
+        <!-- ------------------------------- -->
+        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2">
+          <div class="row">
+            <h4
+              class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
+            >
+              Hizmet Kayıtları
+            </h4>
+          </div>
+
+          <div class="table-responsive">
+            <table id class="table table-striped">
+              <thead class="bg-success text-white">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Hizmet</th>
+                  <th scope="col">Güncelle</th>
+                  <th scope="col">Sil</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr :key="index" v-for="(hizmet, index) in getHizmetler">
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>
+                    {{ hizmet.hizmetInnerHtml }}
+                    <br />
+                    <i :class="hizmet.hizmetIconCode"></i>
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal4"
+                      @click="modelIndexHizmetler(index)"
+                    >
+                      Güncelle
+                    </button>
+                  </td>
+                  <td>
+                    <button @click="hizmetSil(index)" class="btn btn-danger">
+                      Sil
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
+            <button @click="hizmetlerSil" class="btn btn-danger btn-block mt-3">
+              Sıfırla
+            </button>
           </div>
         </div>
 
@@ -306,7 +511,9 @@
           <button
             @click="yetkinliklerFormuSil"
             class="btn btn-danger btn-block mt-5 mb-3"
-          >Tüm Bilgileri Sil</button>
+          >
+            Tüm Bilgileri Sil
+          </button>
         </div>
       </div>
     </div>
@@ -328,7 +535,12 @@
             <h5 class="modal-title text-white" id="exampleModalLabel">
               <strong>Güncelleme Tablosu Yetkinlikler</strong>
             </h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -344,19 +556,43 @@
                 id
                 class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               >
-                <option class="yetkinlik1Modal" value="fab fa-html5">HTML</option>
-                <option class="yetkinlik1Modal" value="fab fa-css3-alt">CSS</option>
-                <option class="yetkinlik1Modal" value="fab fa-js-square">JAVASCRİPT</option>
-                <option class="yetkinlik1Modal" value="fab fa-bootstrap">BOOTSTRAP</option>
-                <option class="yetkinlik1Modal" value="fas fa-database">FİREBASE</option>
-                <option class="yetkinlik1Modal" value="fab fa-react">REACTJS</option>
-                <option class="yetkinlik1Modal" value="fab fa-vuejs">VUEJS</option>
-                <option class="yetkinlik1Modal" value="fab fa-node">NODEJS</option>
+                <option class="yetkinlik1Modal" value="fab fa-html5">
+                  HTML
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-css3-alt">
+                  CSS
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-js-square">
+                  JAVASCRİPT
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-bootstrap">
+                  BOOTSTRAP
+                </option>
+                <option class="yetkinlik1Modal" value="fas fa-database">
+                  FİREBASE
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-react">
+                  REACTJS
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-vuejs">
+                  VUEJS
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-node">
+                  NODEJS
+                </option>
                 <option class="yetkinlik1Modal" value="fab fa-php">PHP</option>
-                <option class="yetkinlik1Modal" value="fab fa-cuttlefish">C</option>
-                <option class="yetkinlik1Modal" value="fab fa-python">PYTHON</option>
-                <option class="yetkinlik1Modal" value="fab fa-java">JAVA</option>
-                <option class="yetkinlik1Modal" value="fab fa-unity">UNİTY</option>
+                <option class="yetkinlik1Modal" value="fab fa-cuttlefish">
+                  C
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-python">
+                  PYTHON
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-java">
+                  JAVA
+                </option>
+                <option class="yetkinlik1Modal" value="fab fa-unity">
+                  UNİTY
+                </option>
               </select>
             </div>
 
@@ -374,8 +610,20 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-            <button @click="changeYetkinlik1Kaydet" type="button" class="btn btn-success">Kaydet</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+            <button
+              @click="changeYetkinlik1Kaydet"
+              type="button"
+              class="btn btn-success"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
       </div>
@@ -400,7 +648,12 @@
             <h5 class="modal-title text-white" id="exampleModalLabel">
               <strong>Güncelleme Tablosu Diğer Yetkinlikler</strong>
             </h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -416,19 +669,43 @@
                 id
                 class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               >
-                <option class="yetkinlik2Modal" value="fab fa-html5">HTML</option>
-                <option class="yetkinlik2Modal" value="fab fa-css3-alt">CSS</option>
-                <option class="yetkinlik2Modal" value="fab fa-js-square">JAVASCRİPT</option>
-                <option class="yetkinlik2Modal" value="fab fa-bootstrap">BOOTSTRAP</option>
-                <option class="yetkinlik2Modal" value="fas fa-database">FİREBASE</option>
-                <option class="yetkinlik2Modal" value="fab fa-react">REACTJS</option>
-                <option class="yetkinlik2Modal" value="fab fa-vuejs">VUEJS</option>
-                <option class="yetkinlik2Modal" value="fab fa-node">NODEJS</option>
+                <option class="yetkinlik2Modal" value="fab fa-html5">
+                  HTML
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-css3-alt">
+                  CSS
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-js-square">
+                  JAVASCRİPT
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-bootstrap">
+                  BOOTSTRAP
+                </option>
+                <option class="yetkinlik2Modal" value="fas fa-database">
+                  FİREBASE
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-react">
+                  REACTJS
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-vuejs">
+                  VUEJS
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-node">
+                  NODEJS
+                </option>
                 <option class="yetkinlik2Modal" value="fab fa-php">PHP</option>
-                <option class="yetkinlik2Modal" value="fab fa-cuttlefish">C</option>
-                <option class="yetkinlik2Modal" value="fab fa-python">PYTHON</option>
-                <option class="yetkinlik2Modal" value="fab fa-java">JAVA</option>
-                <option class="yetkinlik2Modal" value="fab fa-unity">UNİTY</option>
+                <option class="yetkinlik2Modal" value="fab fa-cuttlefish">
+                  C
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-python">
+                  PYTHON
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-java">
+                  JAVA
+                </option>
+                <option class="yetkinlik2Modal" value="fab fa-unity">
+                  UNİTY
+                </option>
               </select>
             </div>
 
@@ -446,8 +723,20 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-            <button @click="changeYetkinlik2Kaydet" type="button" class="btn btn-success">Kaydet</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+            <button
+              @click="changeYetkinlik2Kaydet"
+              type="button"
+              class="btn btn-success"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
       </div>
@@ -472,7 +761,12 @@
             <h5 class="modal-title text-white" id="exampleModalLabel">
               <strong>Güncelleme Tablosu Yabancı Dil</strong>
             </h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -514,8 +808,120 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-            <button @click="changeYabanciDilKaydet" type="button" class="btn btn-success">Kaydet</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+            <button
+              @click="changeYabanciDilKaydet"
+              type="button"
+              class="btn btn-success"
+            >
+              Kaydet
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------------------- -->
+
+    <!-- ############################### -->
+    <!-- ############################### -->
+    <!-- MODAL4 BÖLÜMÜ -->
+    <!-- ############################### -->
+    <!-- ############################### -->
+    <div
+      class="modal fade"
+      id="exampleModal4"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-secondary">
+            <h5 class="modal-title text-white" id="exampleModalLabel">
+              <strong>Güncelleme Tablosu Hizmetler</strong>
+            </h5>
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body pr-4">
+            <div class="row mb-4">
+              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+                <strong>Hizmet:</strong>
+              </span>
+              <select
+                v-model="changeHizmetler.hizmetIconCode"
+                name
+                id
+                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              >
+                <option class="hizmetModal" value="fas fa-desktop">
+                  Web Tasarım
+                </option>
+                <option class="hizmetModal" value="fas fa-cogs">
+                  Web Geliştirme
+                </option>
+                <option class="hizmetModal" value="fas fa-mobile-alt">
+                  Responsive Tasarım
+                </option>
+                <option class="hizmetModal" value="fas fa-medkit">
+                  Hızlı Destek
+                </option>
+                <option class="hizmetModal" value="fas fa-database">
+                  Database Kodlama
+                </option>
+                <option class="hizmetModal" value="fas fa-server">
+                  Server İşlemleri
+                </option>
+                <option class="hizmetModal" value="fab fa-wordpress">
+                  WordPress İşlemleri
+                </option>
+                <option class="hizmetModal" value="fas fa-book">
+                  Özel Ders
+                </option>
+              </select>
+            </div>
+
+            <div class="row mb-4">
+              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+                <strong>Açıklama:</strong>
+              </span>
+              <textarea
+                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+                type="text"
+                placeholder="Yüzde cinsinden yetkinlik seviyesi"
+                v-model="changeHizmetler.hizmetDescription"
+              />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+            <button
+              @click="changeHizmetKaydet"
+              type="button"
+              class="btn btn-success"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
       </div>
@@ -543,6 +949,12 @@ export default {
         yabanciDilSeviyesi: "",
       },
 
+      hizmetler: {
+        hizmetIconCode: "",
+        hizmetInnerHtml: "",
+        hizmetDescription: "",
+      },
+
       changeYetkinlik: [],
       changeYetkinlikIndex: "",
 
@@ -551,6 +963,9 @@ export default {
 
       changeYabanciDil: [],
       changeYabanciDilIndex: "",
+
+      changeHizmetler: [],
+      changeHizmetlerIndex: "",
     };
   },
 
@@ -586,6 +1001,17 @@ export default {
       this.$store.dispatch("setFireYabanciDil", this.yabanciDil);
     },
 
+    //Burası bugün yapıldı...
+    hizmetKaydet() {
+      let classNameHizmet = document.getElementsByClassName("hizmet");
+      for (let i = 0; i < classNameHizmet.length; i++) {
+        if (classNameHizmet[i].value == this.hizmetler.hizmetIconCode) {
+          this.hizmetler.hizmetInnerHtml = classNameHizmet[i].innerHTML;
+        }
+      }
+      this.$store.dispatch("setFireHizmet", this.hizmetler);
+    },
+
     yetkinliklerFormuSil() {
       if (!this.$store.state.skills.isPageYetkinlikFullDTO) {
         alert("Silinecek veri bulunamadı.");
@@ -602,6 +1028,11 @@ export default {
       this.$store.dispatch("deleteYetkinlikler2");
     },
 
+    //Burası bugün yapıldı...
+    hizmetlerSil() {
+      this.$store.dispatch("deleteHizmetler");
+    },
+
     yabanciDillerSil() {
       this.$store.dispatch("deleteYabanciDiller");
     },
@@ -616,6 +1047,11 @@ export default {
 
     yabanciDilSil(index) {
       this.$store.dispatch("deleteYabanciDil", index);
+    },
+
+    //Burası bugün yapıldı...
+    hizmetSil(index) {
+      this.$store.dispatch("deleteHizmet", index);
     },
 
     modelIndexYetkinlik1(index) {
@@ -654,6 +1090,14 @@ export default {
           index
         ];
         this.changeYabanciDilIndex = index;
+      }
+    },
+
+    //Burası bugün yapıldı...
+    modelIndexHizmetler(index) {
+      for (let i = 0; i < this.$store.state.skills.HizmetlerDTO.length; i++) {
+        this.changeHizmetler = this.$store.state.skills.HizmetlerDTO[index];
+        this.changeHizmetlerIndex = index;
       }
     },
 
@@ -701,6 +1145,23 @@ export default {
         changeYabanciDilIndex: this.changeYabanciDilIndex,
       });
     },
+
+    //Burası bugün yapıldı...
+    changeHizmetKaydet() {
+      let classNameHizmetModal = document.getElementsByClassName("hizmetModal");
+      for (let i = 0; i < classNameHizmetModal.length; i++) {
+        if (
+          classNameHizmetModal[i].value == this.changeHizmetler.hizmetIconCode
+        ) {
+          this.changeHizmetler.hizmetInnerHtml =
+            classNameHizmetModal[i].innerHTML;
+        }
+      }
+      this.$store.dispatch("changeHizmet", {
+        changeHizmetler: this.changeHizmetler,
+        changeHizmetlerIndex: this.changeHizmetlerIndex,
+      });
+    },
   },
 
   computed: {
@@ -714,6 +1175,11 @@ export default {
 
     getYabanciDiller() {
       return this.$store.state.skills.YabanciDillerDTO;
+    },
+
+    //Burası bugün yapıldı...
+    getHizmetler() {
+      return this.$store.state.skills.HizmetlerDTO;
     },
   },
 

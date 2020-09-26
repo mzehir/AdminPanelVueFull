@@ -56,6 +56,18 @@
 
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Başlama Yılı:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Okula başlama tarihi"
+              v-model="educationInformation.baslamaYili"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
               <strong>Mezuniyet Yılı:</strong>
             </span>
             <input
@@ -199,6 +211,18 @@
 
             <div class="row mb-4">
               <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+                <strong>Başlama Yılı:</strong>
+              </span>
+              <input
+                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+                type="text"
+                placeholder="Okula başlama tarihi"
+                v-model="changeOkulBilgisi.baslamaYili"
+              />
+            </div>
+
+            <div class="row mb-4">
+              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
                 <strong>Mezuniyet Yılı:</strong>
               </span>
               <input
@@ -239,6 +263,7 @@ export default {
         okul: "",
         bolum: "",
         derece: "",
+        baslamaYili: "",
         mezuniyetYili: "",
         okulAnisi: "",
       },

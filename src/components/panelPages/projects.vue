@@ -2,82 +2,131 @@
   <div class="pt-5 text-center textFamily">
     <div class="card pl-3 pr-3 scrollDiv">
       <div class="card-header row bg-dark">
-        <h3 class="col-xs-12 col-sm-12 col-md-12 bg-white p-3 rounded shadow-lg">Projeler Formu</h3>
+        <h3
+          class="col-xs-12 col-sm-12 col-md-12 bg-white p-3 rounded shadow-lg"
+        >
+          Projeler Formu
+        </h3>
       </div>
       <div class="card-body row pb-0">
         <!-- ############################### -->
         <!-- ############################### -->
-        <!-- PROJELER BÖLÜMÜ -->
+        <!-- ÇALIŞMA SÜRECİ BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Tamamlanan Projeler</h4>
+            >
+              Çalışma Süreci
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-              <strong>Proje Adı:</strong>
+              <strong>Süreç 1</strong>
             </span>
             <input
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
-              placeholder="Projeye verilebilecek bir isim"
-              v-model="tamalananProjeler.projeAdi"
+              placeholder="Süreç 1 başlığı"
+              v-model="calismaSureci.surec1"
             />
           </div>
 
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-              <strong>Proje Hakkında:</strong>
+              <strong>Süreç 1 Açıklama</strong>
             </span>
             <textarea
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
-              placeholder="Proje içeriği hakkında bilgi"
-              v-model="tamalananProjeler.projeHakkinda"
+              placeholder="Süreç 1 açıklaması"
+              v-model="calismaSureci.surec1Aciklama"
             />
           </div>
 
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-              <strong>Proje Ortağı:</strong>
+              <strong>Süreç 2</strong>
             </span>
             <input
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
-              placeholder="Varsa ortak ismi"
-              v-model="tamalananProjeler.projeOrtaklari"
+              placeholder="Süreç 2 başlığı"
+              v-model="calismaSureci.surec2"
             />
           </div>
 
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-              <strong>Github Adresi:</strong>
+              <strong>Süreç 2 Açıklama:</strong>
             </span>
-            <input
+            <textarea
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
-              placeholder="Varsa github adresi"
-              v-model="tamalananProjeler.githubAdresi"
+              placeholder="Süreç 2 açıklaması"
+              v-model="calismaSureci.surec2Aciklama"
             />
           </div>
 
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-              <strong>URL Adresi:</strong>
+              <strong>Süreç 3:</strong>
             </span>
             <input
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
-              placeholder="Varsa url adresi"
-              v-model="tamalananProjeler.urlAdresi"
+              placeholder="Süreç 3 başlığı"
+              v-model="calismaSureci.surec3"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Süreç 3 Açıklama:</strong>
+            </span>
+            <textarea
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Süreç 3 açıklamasıi"
+              v-model="calismaSureci.surec3Aciklama"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Süreç 4:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Süreç 4 başlığı"
+              v-model="calismaSureci.surec4"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Süreç 4 Açıklama:</strong>
+            </span>
+            <textarea
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Süreç 4 açıklaması"
+              v-model="calismaSureci.surec4Aciklama"
             />
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="tamalananProjelerKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+            <button
+              @click="calismaSureciKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -85,46 +134,90 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Tamamlanan Proje Kayıtları</h4>
+            >
+              Çalışma Süreci Kayıtları
+            </h4>
           </div>
 
-          <div class="table-responsive">
-            <table id class="table table-striped">
-              <thead class="bg-success text-white">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Adı</th>
-                  <th scope="col">Github Adresi</th>
-                  <th scope="col">Url Adresi</th>
-                  <th scope="col">Güncelle</th>
-                  <th scope="col">Sil</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr :key="index" v-for="(tamamlananProje, index) in getTamamlananProjeler">
-                  <th scope="row">{{index + 1}}</th>
-                  <td>{{tamamlananProje.projeAdi}}</td>
-                  <td>{{tamamlananProje.githubAdresi}}</td>
-                  <td>{{tamamlananProje.urlAdresi}}</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary"
-                      data-toggle="modal"
-                      data-target="#exampleModal"
-                      @click="tProjeGuncelle(index)"
-                    >Güncelle</button>
-                  </td>
-                  <td>
-                    <button @click="tekTamamlananProjeSil(index)" class="btn btn-danger">Sil</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Süreç 1:
+              <strong>{{
+                getCalismaSureci ? getCalismaSureci.surec1 : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Açıklaması:
+              <strong>{{
+                getCalismaSureci ? getCalismaSureci.surec1Aciklama : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Süreç 2:
+              <strong>{{
+                getCalismaSureci ? getCalismaSureci.surec2 : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Açıklaması:
+              <strong>{{
+                getCalismaSureci ? getCalismaSureci.surec2Aciklama : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Süreç 3:
+              <strong>{{
+                getCalismaSureci ? getCalismaSureci.surec3 : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Açıklaması:
+              <strong>{{
+                getCalismaSureci ? getCalismaSureci.surec3Aciklama : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Süreç 4:
+              <strong>{{
+                getCalismaSureci ? getCalismaSureci.surec4 : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Açıklaması:
+              <strong>{{
+                getCalismaSureci ? getCalismaSureci.surec4Aciklama : ""
+              }}</strong>
+            </span>
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="tamalananProjelerSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="calismaSureciSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
 
@@ -133,12 +226,26 @@
         <!-- PORTFOLİO BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Portfolio</h4>
+            >
+              Portfolio
+            </h4>
           </div>
+
+          <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">UYARI!</h4>
+            <p>
+              Aynı portfoy projesine ait ikinci bir fotoğraf için
+              <strong>Portfoy Başlığı</strong> bilgisini ilk fotoğraftaki
+              girilen bilgi ile aynı giriniz.
+            </p>
+          </div>
+
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
               <strong>Portföy Başlığı:</strong>
@@ -182,7 +289,7 @@
             <input
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               type="text"
-              placeholder="Fotoğrafa ait projenin müşteri bilgisi..."
+              placeholder="Fotoğrafa ait projenin müşteri bilgisi 'gmail' ya da 'gsm'"
               v-model="portfolio.musteriBilgisi"
             />
           </div>
@@ -211,7 +318,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="portfolioKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+            <button
+              @click="portfolioKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -219,7 +331,9 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Portfolio Kayıtları</h4>
+            >
+              Portfolio Kayıtları
+            </h4>
           </div>
 
           <div class="table-responsive">
@@ -237,12 +351,17 @@
               </thead>
               <tbody>
                 <tr :key="index" v-for="(portfoy, index) in getPortfoyler">
-                  <th scope="row">{{index + 1}}</th>
-                  <td>{{portfoy.portfoyBasligi}}</td>
-                  <td>{{portfoy.musteriBilgisi}}</td>
-                  <td>{{portfoy.tamamlanmaTarihi}}</td>
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ portfoy.portfoyBasligi }}</td>
+                  <td>{{ portfoy.musteriBilgisi }}</td>
+                  <td>{{ portfoy.tamamlanmaTarihi }}</td>
                   <td>
-                    <img height="100" width="100" :src="portfoy.portfoyFotoUrl" alt />
+                    <img
+                      height="100"
+                      width="100"
+                      :src="portfoy.portfoyFotoUrl"
+                      alt
+                    />
                     <a :href="portfoy.portfoyFotoUrl">Tam Görüntü</a>
                   </td>
                   <td>
@@ -252,10 +371,17 @@
                       data-toggle="modal"
                       data-target="#exampleModa2"
                       @click="portfolioGuncelle(index)"
-                    >Güncelle</button>
+                    >
+                      Güncelle
+                    </button>
                   </td>
                   <td>
-                    <button @click="tekPortfolioSil(index)" class="btn btn-danger">Sil</button>
+                    <button
+                      @click="tekPortfolioSil(index)"
+                      class="btn btn-danger"
+                    >
+                      Sil
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -263,7 +389,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="portfolioKayitlariSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="portfolioKayitlariSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
 
@@ -271,93 +402,9 @@
           <button
             @click="projelerFormuSil"
             class="btn btn-danger btn-block mt-5 mb-3"
-          >Tüm Bilgileri Sil</button>
-        </div>
-      </div>
-    </div>
-    <!-- ############################### -->
-    <!-- ############################### -->
-    <!-- MODAL BÖLÜMÜ -->
-    <!-- ############################### -->
-    <!-- ############################### -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header bg-secondary">
-            <h5 class="modal-title text-white" id="exampleModalLabel">
-              <strong>Güncelleme Tablosu Tamamlanan Projeler</strong>
-            </h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="row mb-4">
-              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-                <strong>Proje Adı:</strong>
-              </span>
-              <input
-                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
-                type="text"
-                placeholder="Projeye verilebilecek bir isim"
-                v-model="changeTamamlananProjeler.projeAdi"
-              />
-            </div>
-            <div class="row mb-4">
-              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-                <strong>Proje Hakkında:</strong>
-              </span>
-              <input
-                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
-                type="text"
-                placeholder="Proje içeriği hakkında bilgi"
-                v-model="changeTamamlananProjeler.projeHakkinda"
-              />
-            </div>
-            <div class="row mb-4">
-              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-                <strong>Proje Ortağı:</strong>
-              </span>
-              <input
-                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
-                type="text"
-                placeholder="Varsa ortak ismi"
-                v-model="changeTamamlananProjeler.projeOrtaklari"
-              />
-            </div>
-            <div class="row mb-4">
-              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-                <strong>Github Adresi:</strong>
-              </span>
-              <input
-                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
-                type="text"
-                placeholder="Varsa github adresi"
-                v-model="changeTamamlananProjeler.githubAdresi"
-              />
-            </div>
-            <div class="row mb-4">
-              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
-                <strong>URL Adresi:</strong>
-              </span>
-              <input
-                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
-                type="text"
-                placeholder="Varsa url adresi"
-                v-model="changeTamamlananProjeler.urlAdresi"
-              />
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-            <button type="button" class="btn btn-primary" @click="changetProjeKaydet">Kaydet</button>
-          </div>
+          >
+            Tüm Bilgileri Sil
+          </button>
         </div>
       </div>
     </div>
@@ -379,7 +426,12 @@
             <h5 class="modal-title text-white" id="exampleModalLabel">
               <strong>Güncelleme Tablosu Portfolio</strong>
             </h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -453,8 +505,20 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" @click="changePortfolioKaydet">Kaydet</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="changePortfolioKaydet"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
       </div>
@@ -466,12 +530,15 @@
 export default {
   data() {
     return {
-      tamalananProjeler: {
-        projeAdi: "",
-        projeHakkinda: "",
-        projeOrtaklari: "",
-        githubAdresi: "",
-        urlAdresi: "",
+      calismaSureci: {
+        surec1: "",
+        surec1Aciklama: "",
+        surec2: "",
+        surec2Aciklama: "",
+        surec3: "",
+        surec3Aciklama: "",
+        surec4: "",
+        surec4Aciklama: "",
       },
 
       portfolio: {
@@ -485,17 +552,14 @@ export default {
       },
       portfoyFoto: "",
 
-      changeTamamlananProjeler: [],
-      changeTamamlananProjelerIndex: "",
-
       changePortfolio: [],
       changePortfolioIndex: "",
       changePortfoyFoto: "",
     };
   },
   methods: {
-    tamalananProjelerKaydet() {
-      this.$store.dispatch("setFireTamamlananProjeler", this.tamalananProjeler);
+    calismaSureciKaydet() {
+      this.$store.dispatch("setFireCalismaSureci", this.calismaSureci);
     },
 
     portfolioFotoYakala(event) {
@@ -518,40 +582,16 @@ export default {
       }
     },
 
-    tamalananProjelerSil() {
-      this.$store.dispatch("deleteTamalananProjeler");
+    calismaSureciSil() {
+      this.$store.dispatch("deleteCalismaSureci");
     },
 
     portfolioKayitlariSil() {
       this.$store.dispatch("deletePortfolioKayitlari");
     },
 
-    tekTamamlananProjeSil(index) {
-      this.$store.dispatch("deletetekTamamlananProje", index);
-    },
-
     tekPortfolioSil(index) {
-      this.$store.dispatch("deletePortfolioToFire", index)
-    },
-
-    tProjeGuncelle(index) {
-      for (
-        let i = 0;
-        i < this.$store.state.projects.tamamlananProjelerDTO.length;
-        i++
-      ) {
-        this.changeTamamlananProjeler = this.$store.state.projects.tamamlananProjelerDTO[
-          index
-        ];
-        this.changeTamamlananProjelerIndex = index;
-      }
-    },
-
-    changetProjeKaydet() {
-      this.$store.dispatch("changetProjeToFire", {
-        changeTamamlananProjeler: this.changeTamamlananProjeler,
-        changeTamamlananProjelerIndex: this.changeTamamlananProjelerIndex,
-      });
+      this.$store.dispatch("deletePortfolioToFire", index);
     },
 
     portfolioGuncelle(index) {
@@ -581,8 +621,8 @@ export default {
     localStorage.setItem("urlBilgisi", newString01);
   },
   computed: {
-    getTamamlananProjeler() {
-      return this.$store.state.projects.tamamlananProjelerDTO;
+    getCalismaSureci() {
+      return this.$store.state.projects.calismaSureciDTO;
     },
 
     getPortfoyler() {

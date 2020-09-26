@@ -4,7 +4,9 @@
       <div class="card-header row bg-dark">
         <h3
           class="col-xs-12 col-sm-12 col-md-12 bg-white p-3 rounded shadow-lg"
-        >Mesleki Deneyim Formu</h3>
+        >
+          Mesleki Deneyim Formu
+        </h3>
       </div>
       <div class="card-body row pb-0">
         <!-- ############################### -->
@@ -12,11 +14,15 @@
         <!-- MESLEKİ DENEYİM BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Mesleki Deneyim</h4>
+            >
+              Mesleki Deneyim
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -39,6 +45,30 @@
               type="text"
               placeholder="Çalışılan pozisyon ismi"
               v-model="experienceInformation.pozisyon"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Başlama Tarihi:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Firmaya başlama zamanı"
+              v-model="experienceInformation.baslangicYili"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Bitiş Tarihi:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Firmadan ayrılış zamanı"
+              v-model="experienceInformation.bitisYili"
             />
           </div>
 
@@ -67,7 +97,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="firmaBilgileriKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+            <button
+              @click="firmaBilgileriKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -75,7 +110,9 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Deneyim Bilgileri Kayıtları</h4>
+            >
+              Deneyim Bilgileri Kayıtları
+            </h4>
           </div>
 
           <div class="table-responsive">
@@ -91,11 +128,14 @@
                 </tr>
               </thead>
               <tbody>
-                <tr :key="index" v-for="(calisilanFirma, index) in getFirmaBilgileri">
-                  <th scope="row">{{index + 1}}</th>
-                  <td>{{calisilanFirma.firma}}</td>
-                  <td>{{calisilanFirma.pozisyon}}</td>
-                  <td>{{calisilanFirma.sure}}</td>
+                <tr
+                  :key="index"
+                  v-for="(calisilanFirma, index) in getFirmaBilgileri"
+                >
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ calisilanFirma.firma }}</td>
+                  <td>{{ calisilanFirma.pozisyon }}</td>
+                  <td>{{ calisilanFirma.sure }}</td>
                   <td>
                     <button
                       type="button"
@@ -103,10 +143,17 @@
                       data-toggle="modal"
                       data-target="#exampleModal"
                       @click="modelIndex(index)"
-                    >Güncelle</button>
+                    >
+                      Güncelle
+                    </button>
                   </td>
                   <td>
-                    <button @click="calisilanFirmaSil(index)" class="btn btn-danger">Sil</button>
+                    <button
+                      @click="calisilanFirmaSil(index)"
+                      class="btn btn-danger"
+                    >
+                      Sil
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -114,7 +161,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="calisilanFirmalarSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="calisilanFirmalarSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
 
@@ -122,7 +174,9 @@
           <button
             @click="firmaBilgileriFormuSil"
             class="btn btn-danger btn-block mt-5 mb-3"
-          >Tüm Bilgileri Sil</button>
+          >
+            Tüm Bilgileri Sil
+          </button>
         </div>
       </div>
     </div>
@@ -144,7 +198,12 @@
             <h5 class="modal-title text-white" id="exampleModalLabel">
               <strong>Güncelleme Tablosu</strong>
             </h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -176,6 +235,30 @@
 
             <div class="row mb-4">
               <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+                <strong>Başlama Tarihi:</strong>
+              </span>
+              <input
+                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+                type="text"
+                placeholder="Firmaya başlama zamanı"
+                v-model="changeFirmaBilgisi.baslangicYili"
+              />
+            </div>
+
+            <div class="row mb-4">
+              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+                <strong>Bitiş Tarihi:</strong>
+              </span>
+              <input
+                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+                type="text"
+                placeholder="Firmadan ayrılış zamanı"
+                v-model="changeFirmaBilgisi.bitisYili"
+              />
+            </div>
+
+            <div class="row mb-4">
+              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
                 <strong>Süre:</strong>
               </span>
               <input
@@ -200,8 +283,20 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-            <button type="button" class="btn btn-success" @click="changeFirmaBilgisiKaydet">Kaydet</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              @click="changeFirmaBilgisiKaydet"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
       </div>
@@ -217,6 +312,8 @@ export default {
         firma: "",
         pozisyon: "",
         sure: "",
+        baslangicYili: "",
+        bitisYili: "",
         firmaAnisi: "",
       },
       changeFirmaBilgisi: [],

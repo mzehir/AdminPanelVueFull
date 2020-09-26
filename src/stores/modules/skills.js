@@ -9,6 +9,8 @@ const state = {
     AnaYetkinliklerDTO: [],
     YanYetkinliklerDTO: [],
     YabanciDillerDTO: [],
+
+    HizmetlerDTO: [],
 }
 
 const getters = {
@@ -20,6 +22,8 @@ const mutations = {
         state.AnaYetkinliklerDTO = data.AnaYetkinlikler;
         state.YanYetkinliklerDTO = data.YanYetkinlikler;
         state.YabanciDillerDTO = data.YabanciDiller;
+
+        state.HizmetlerDTO = data.Hizmetler;
     },
 
     isPageYetkinlikFullDTO(state, data) {
@@ -148,6 +152,41 @@ const actions = {
 
     },
 
+    //Burası bugün yapıldı...
+    setFireHizmet({ dispatch }, data) {
+        let hizmetlerList = [];
+        if (state.isPageYetkinlikFullDTO) {
+            if (state.HizmetlerDTO) {
+                for (let i = 0; i < state.HizmetlerDTO.length; i++) {
+                    hizmetlerList.push(state.HizmetlerDTO[i]);
+                };
+                hizmetlerList.push(data);
+                Firebase.db.collection("Admin").doc("YetkinlikBilgileri").update({
+                    "Hizmetler": hizmetlerList
+                }).then(function () {
+                    dispatch("getFireYetkinliklerFormu");
+                })
+            }
+            else {
+                hizmetlerList.push(data)
+                Firebase.db.collection("Admin").doc("YetkinlikBilgileri").update({
+                    "Hizmetler": hizmetlerList
+                }).then(function () {
+                    dispatch("getFireYetkinliklerFormu");
+                })
+            }
+        }
+        else {
+            hizmetlerList.push(data);
+            Firebase.db.collection("Admin").doc("YetkinlikBilgileri").set({
+                "Hizmetler": hizmetlerList
+            })
+                .then(function () {
+                    dispatch("getFireYetkinliklerFormu");
+                })
+        }
+    },
+
     deleteYetkinliklerFormu({ dispatch }) {
         if (window.confirm("Yetkinlikler bilgi formunun tüm verilerini silmek üzeresiniz emin misiniz?") === true) {
             Firebase.db.collection("Admin").doc("YetkinlikBilgileri").delete()
@@ -200,6 +239,20 @@ const actions = {
         }
     },
 
+    //Burası bugün yapıldı...
+    deleteHizmetler({ dispatch, state }) {
+        if (state.HizmetlerDTO == undefined || state.HizmetlerDTO == "") {
+            alert("Silinecek veri bulunamadı...");
+        } else {
+            Firebase.db.collection('Admin').doc("YetkinlikBilgileri").update({
+                Hizmetler: firestore.FieldValue.delete()
+            })
+                .then(function () {
+                    dispatch("getFireYetkinliklerFormu");
+                })
+        }
+    },
+
     deleteYetkinlik1({ state }, index) {
         let yetkinlikler1List = [];
         state.AnaYetkinliklerDTO.splice(index, 1);
@@ -233,6 +286,18 @@ const actions = {
         }
     },
 
+    //Burası bugün yapıldı...
+    deleteHizmet({ state }, index) {
+        let hizmetlerList = [];
+        state.HizmetlerDTO.splice(index, 1);
+        hizmetlerList = state.HizmetlerDTO
+        if (state.isPageYetkinlikFullDTO) {
+            Firebase.db.collection('Admin').doc('YetkinlikBilgileri').update({
+                "Hizmetler": hizmetlerList
+            })
+        }
+    },
+
     changeYetkinlik1({ state }, data) {
         state.AnaYetkinliklerDTO[data.changeYetkinlik1Index] = data.changeYetkinlik1;
         Firebase.db.collection("Admin").doc("YetkinlikBilgileri").update({
@@ -261,7 +326,18 @@ const actions = {
             .then(function () {
                 alert("Bilgi güncelleme işleminiz tamamlanmıştır.");
             })
-    }
+    },
+
+    //Burası bugün yapıldı...
+    changeHizmet({ state }, data) {
+        state.HizmetlerDTO[data.changeHizmetlerIndex] = data.changeHizmetler;
+        Firebase.db.collection("Admin").doc("YetkinlikBilgileri").update({
+            "Hizmetler": state.HizmetlerDTO
+        })
+            .then(function () {
+                alert("Bilgi güncelleme işleminiz tamamlanmıştır.");
+            })
+    },
 
 }
 

@@ -264,6 +264,18 @@
             />
           </div>
 
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Çalıştığı Şirket:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Referans olan kişinin çalıştığı yer, kurum, şirket ismi"
+              v-model="referanslar.calisilanSirket"
+            />
+          </div>
+
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
             <button @click="referanslarKaydet" class="btn btn-success btn-block mt-3">Kaydet</button>
           </div>
@@ -501,6 +513,18 @@
                 v-model="changeReferans.website"
               />
             </div>
+
+            <div class="row mb-4">
+              <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+                <strong>Çalışılan Şirket:</strong>
+              </span>
+              <input
+                class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+                type="text"
+                placeholder="Referans olan kişinin çalıştığı yer, kurum veya şirket ismi"
+                v-model="changeReferans.calisilanSirket"
+              />
+            </div>
           </div>
 
           <div class="modal-footer">
@@ -527,6 +551,7 @@ export default {
         gsm: "",
         email: "",
         website: "",
+        calisilanSirket: "",
       },
       sosyalMedyaHesaplari: {
         smInnerHtml: "",

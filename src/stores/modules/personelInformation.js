@@ -10,7 +10,11 @@ const state = {
     fullPathCv: "",
     urlCv: "",
     fullPathFoto: "",
-    urlFoto: ""
+    urlFoto: "",
+
+    fullPathMuzik: "",
+    urlMuzik: "",
+    progress: null
 }
 
 const getters = {
@@ -31,15 +35,13 @@ const mutations = {
 
         state.fullPathFoto = data.fotoFullPath;
         state.urlFoto = data.fotoUrl
+
+        state.fullPathMuzik = data.muzikFullPath;
+        state.urlMuzik = data.muzikUrl
     },
 }
 
 const actions = {
-    //  ############################### 
-    //  ############################### 
-    //  KİŞİSEL BİLGİ FORMU SAYFASININ TAMAMININ GETİRİLMESİ 
-    //  ############################### 
-    //  ############################### 
     getFireKisiselBilgiFormu({ commit }) {
         let Fire = Firebase.db.collection('Admin').doc('KisiselBilgiler');
         Fire.get().then(function (doc) {
@@ -55,13 +57,6 @@ const actions = {
         })
     },
 
-    // *****************************************************************************************************************************************************************
-
-    //  ############################### 
-    //  ############################### 
-    //  KİŞİSEL BİLGİLERİN GÖNDERİLMESİ 
-    //  ############################### 
-    //  ############################### 
     setFirePersonelBilgileri({ state, dispatch }, data) {
         if (state.isPageFullDTO) {
             Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
@@ -81,11 +76,6 @@ const actions = {
         }
     },
 
-    //  ############################### 
-    //  ############################### 
-    //  HOBİ BİLGİLERİNİN GÖNDERİLMESİ 
-    //  ############################### 
-    //  ############################### 
     setFireHobbies({ state, dispatch }, data) {
         let HobbiesList = [];
         if (state.isPageFullDTO) {
@@ -122,11 +112,6 @@ const actions = {
         }
     },
 
-    //  ############################### 
-    //  ############################### 
-    //  ÖN YAZI BİLGİLERİNİN GÖNDERİLMESİ 
-    //  ############################### 
-    //  ############################### 
     setFireCoverLetter({ state, dispatch }, data) {
         if (state.isPageFullDTO) {
             Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
@@ -146,11 +131,6 @@ const actions = {
         }
     },
 
-    //  ############################### 
-    //  ############################### 
-    //  CV VE PROFİL FOTOĞRAFI BİLGİLERİ FONKSİYONLARI
-    //  ############################### 
-    //  ############################### 
     setFireCv({ state, dispatch }, data) {
         if (data.cvFile == "" || data.cvName == "") {
             alert("Kaydedilecek dosya bulunamadı...");
@@ -189,6 +169,13 @@ const actions = {
             .then(function (res) {
                 dispatch("getFireCv", res.ref.fullPath);
             })
+        // --------------------------------------------------------------
+        // var uploadTask = Firebase.storage.ref(`CV/${data.cvName}`).put(data.cvFile);
+        // uploadTask.on('state_changed', function (snapshot) {
+        //     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        //     console.log('Upload is ' + progress + '% done');
+        //     dispatch("getFireCv", uploadTask.ref_.fullPath);
+        // })  
     },
 
     getFireCv({ dispatch, state }, data) {
@@ -214,7 +201,6 @@ const actions = {
                 }
             })
     },
-
 
     setFireFoto({ state, dispatch }, data) {
         if (data.fotoFile == "" || data.fotoName == "") {
@@ -280,9 +266,70 @@ const actions = {
             })
     },
 
+    setFireMuzik({ state, dispatch }, data) {
+        if (data.muzikFile == "" || data.muzikName == "") {
+            alert("Kaydedilecek dosya bulunamadı...");
+        }
+        else {
+            if (state.fullPathMuzik == "" || state.fullPathMuzik == undefined) {
+                dispatch("sendFireMuzik", data);
+            }
+            else {
+                dispatch("deleteFireMuzik", data);
+            }
+        }
+    },
 
+    deleteFireMuzik({ dispatch, state }, data) {
+        var desertRef = Firebase.storageRef.child(state.fullPathMuzik);
+        desertRef.delete()
+            .then(function () {
+                if (data == "silVeDur") {
+                    Firebase.db.collection('Admin').doc('KisiselBilgiler').update({
+                        muzikFullPath: firestore.FieldValue.delete(),
+                        muzikUrl: firestore.FieldValue.delete()
+                    })
+                        .then(function () {
+                            dispatch("getFireKisiselBilgiFormu")
+                            alert("Ses dosyası silindi.");
+                        })
+                } else {
+                    dispatch("sendFireMuzik", data)
+                }
+            })
+    },
 
-    // *****************************************************************************************************************************************************************
+    sendFireMuzik({ state, dispatch }, data) {
+        Firebase.storage.ref(`MUZIK/${data.muzikName}`).put(data.muzikFile)
+            .then(function (res) {
+                dispatch("getFireMuzik", res.ref.fullPath);
+            })
+    },
+
+    getFireMuzik({ state, dispatch }, data) {
+        Firebase.storageRef.child(data).getDownloadURL()
+            .then(function (res) {
+                if (state.isPageFullDTO) {
+                    Firebase.db.collection("Admin").doc("KisiselBilgiler").update({
+                        "muzikFullPath": data,
+                        "muzikUrl": res
+                    }).then(function () {
+                        alert("Ses dosyası kaydedilmiştir.");
+                        dispatch("getFireKisiselBilgiFormu");
+                    })
+                }
+                else {
+                    Firebase.db.collection("Admin").doc("KisiselBilgiler").set({
+                        "muzikFullPath": data,
+                        "muzikUrl": res
+                    }).then(function () {
+                        alert("Ses dosyası kaydedilmiştir.");
+                        dispatch("getFireKisiselBilgiFormu");
+                    })
+                }
+            })
+    },
+
     deleteKisiselBilgiFormu({ dispatch, state }) {
         if (window.confirm("Kişisel bilgi formunun tüm verilerini silmek üzeresiniz emin misiniz?") === true) {
             Firebase.db.collection("Admin").doc("KisiselBilgiler").delete()
@@ -292,6 +339,10 @@ const actions = {
                         .then(function () {
                             var desertRef2 = Firebase.storageRef.child(state.fullPathFoto);
                             desertRef2.delete()
+                                .then(function () {
+                                    var desertRef3 = Firebase.storageRef.child(state.fullPathMuzik);
+                                    desertRef3.delete()
+                                })
                                 .then(function () {
                                     alert("Kişisel bilgi formunun tüm verileri silinmiştir.");
                                     window.location.reload();

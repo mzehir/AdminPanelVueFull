@@ -4,7 +4,9 @@
       <div class="card-header row bg-dark">
         <h3
           class="col-xs-12 col-sm-12 col-md-12 bg-white p-3 rounded shadow-lg"
-        >Kişisel Bilgiler Formu</h3>
+        >
+          Kişisel Bilgiler Formu
+        </h3>
       </div>
       <div class="card-body row pb-0">
         <!-- ############################### -->
@@ -12,11 +14,15 @@
         <!-- KİŞİSEL BİLGİLER BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Kişisel Bilgiler</h4>
+            >
+              Kişisel Bilgiler
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -90,8 +96,51 @@
             />
           </div>
 
-          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center mb-3">
-            <button @click="personelBilgileriKaydet" class="btn btn-success btn-block mt-3">Kaydet</button>
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Deneyim Yılı:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Örneğin '7' gibi"
+              v-model="personelBilgileri.totalExperience"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Toplam Proje:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Örneğin '30' gibi"
+              v-model="personelBilgileri.totalProjects"
+            />
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Mevcut İş:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
+              type="text"
+              placeholder="Çalışmıyorsa 'freelancer' gibi ya da 'şirket ismi' gibi"
+              v-model="personelBilgileri.isWorking"
+            />
+          </div>
+
+          <div
+            class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center mb-3"
+          >
+            <button
+              @click="personelBilgileriKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -99,52 +148,100 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Kişisel Bilgi Kayıtları</h4>
+            >
+              Kişisel Bilgi Kayıtları
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-md-12">
               İsim:
-              <strong>{{getPersonelBilgileri ? getPersonelBilgileri.name : ""}}</strong>
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.name : ""
+              }}</strong>
             </span>
           </div>
 
           <div class="row mb-4">
             <span class="col-md-12">
               Soyisim:
-              <strong>{{getPersonelBilgileri ? getPersonelBilgileri.surName : ""}}</strong>
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.surName : ""
+              }}</strong>
             </span>
           </div>
 
           <div class="row mb-4">
             <span class="col-md-12">
               Doğum Yılı:
-              <strong>{{getPersonelBilgileri ? getPersonelBilgileri.birtday : ""}}</strong>
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.birtday : ""
+              }}</strong>
             </span>
           </div>
 
           <div class="row mb-4">
             <span class="col-md-12">
               Meslek 1:
-              <strong>{{getPersonelBilgileri ? getPersonelBilgileri.business : ""}}</strong>
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.business : ""
+              }}</strong>
             </span>
           </div>
 
           <div class="row mb-4">
             <span class="col-md-12">
               Meslek 2:
-              <strong>{{getPersonelBilgileri ? getPersonelBilgileri.business2 : ""}}</strong>
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.business2 : ""
+              }}</strong>
             </span>
           </div>
 
           <div class="row mb-4">
             <span class="col-md-12">
               Meslek 3:
-              <strong>{{getPersonelBilgileri ? getPersonelBilgileri.business3 : ""}}</strong>
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.business3 : ""
+              }}</strong>
             </span>
           </div>
 
-          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center mb-3">
-            <button @click="personelBilgileriSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Deneyim Yılı:
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.totalExperience : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Toplam Proje:
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.totalProjects : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div class="row mb-4">
+            <span class="col-md-12">
+              Mevcut İş:
+              <strong>{{
+                getPersonelBilgileri ? getPersonelBilgileri.isWorking : ""
+              }}</strong>
+            </span>
+          </div>
+
+          <div
+            class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center mb-3"
+          >
+            <button
+              @click="personelBilgileriSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
 
@@ -154,11 +251,15 @@
         <!-- ############################### -->
         <!-- ############################### -->
 
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >CV İle Foto</h4>
+            >
+              CV İle Foto
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -195,30 +296,89 @@
               <i class="fas fa-check-circle"></i>
             </button>
           </div>
+
+          <div class="row mb-4">
+            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+              <strong>Favori Müzik:</strong>
+            </span>
+            <input
+              class="col-xs-12 col-sm-12 col-md-6 pr-3 ml-0 pb-3 pt-1 form-control-file"
+              type="file"
+              placeholder="Bu alandan favori müziğinizi yükleyiniz."
+              @change="muzikDataTut($event)"
+            />
+            <button
+              @click="muzikKaydet"
+              class="btn btn-outline-success btn-lg rounded-circle ml-4 mt-0"
+            >
+              <i class="fas fa-check-circle"></i>
+            </button>
+          </div>
+          <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">UYARI!!!</h4>
+            <p>
+              Cv, fotoğraf ve ses dosyası yüklenmesi tamamlanana kadar bekleyiniz.
+              Tamamlandığında ekrana tamamlanmayla alakalı uyarı gelecektir.
+            </p>
+          </div>
         </div>
         <!-- ------------------------------- -->
         <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2">
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >CV Ve Foto Kaydı</h4>
+            >
+              CV Ve Foto Kaydı
+            </h4>
           </div>
 
           <div class="row mb-4">
             <div class="col-md-6">
-              <img v-if="getCv" class="img-fluid" height="100" width="100" src="../.././assets/pdfBg.png" />
+              <img
+                v-if="getCv"
+                class="img-fluid"
+                height="100"
+                width="100"
+                src="../.././assets/pdfBg.png"
+              />
               <br />
               <a v-if="getCv" :href="getCv" target="_blank">Görüntüle</a>
               <br />
-              <button @click="cvSil" class="btn btn-outline-danger btn-lg rounded-circle">
+              <button
+                @click="cvSil"
+                class="btn btn-outline-danger btn-lg rounded-circle"
+              >
                 <i class="fas fa-trash-alt"></i>
               </button>
             </div>
             <div class="col-md-6">
-              <img v-if="getFoto" class="img-fluid" height="100" width="100" :src="getFoto" />
+              <img
+                v-if="getFoto"
+                class="img-fluid"
+                height="100"
+                width="100"
+                :src="getFoto"
+              />
               <br />
               <br />
-              <button @click="fotoSil" class="btn btn-outline-danger btn-lg rounded-circle">
+              <button
+                @click="fotoSil"
+                class="btn btn-outline-danger btn-lg rounded-circle"
+              >
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </div>
+
+            <div class="col-md-12 mt-4">
+              <audio preload="auto" controls autoplay loop>
+                <source id="mpeg" :src="getMuzik" type="audio/mpeg" />
+                Burası tarayıcınız tarafından desteklenmiyor.
+              </audio>
+              <br />
+              <button
+                @click="muzikSil"
+                class="btn btn-outline-danger btn-lg rounded-circle"
+              >
                 <i class="fas fa-trash-alt"></i>
               </button>
             </div>
@@ -230,11 +390,15 @@
         <!-- HOBİLER BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Hobiler</h4>
+            >
+              Hobiler
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -258,8 +422,15 @@
               <option value="fab fa-searchengin">Araştırma Yapma</option>
             </select>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center mb-3">
-            <button @click="hobilerKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+          <div
+            class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center mb-3"
+          >
+            <button
+              @click="hobilerKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -267,7 +438,9 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Hobi Kayıtları</h4>
+            >
+              Hobi Kayıtları
+            </h4>
           </div>
           <div
             :key="index"
@@ -275,17 +448,28 @@
             class="row mb-2 p-1 rounded shadow-lg"
           >
             <span class="col-md-12">
-              <strong class="bg-success rounded-circle p-2">{{index + 1 + "-"}}</strong>
-              <strong>{{hobi.hobiInnerHtml}}</strong>
+              <strong class="bg-success rounded-circle p-2">{{
+                index + 1 + "-"
+              }}</strong>
+              <strong>{{ hobi.hobiInnerHtml }}</strong>
               <a>
                 <i :class="hobi.hobi"></i>
               </a>
               <br />
-              <button @click="hobiSil(index)" class="btn btn-danger btn-small mt-2">Sil</button>
+              <button
+                @click="hobiSil(index)"
+                class="btn btn-danger btn-small mt-2"
+              >
+                Sil
+              </button>
             </span>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center mb-3">
-            <button @click="hobilerSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+          <div
+            class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center mb-3"
+          >
+            <button @click="hobilerSil" class="btn btn-danger btn-block mt-3">
+              Sıfırla
+            </button>
           </div>
         </div>
         <!-- ############################### -->
@@ -293,11 +477,15 @@
         <!-- HAKKIMDA(ÖNYAZI) BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Hakkımda(Ön Yazı)</h4>
+            >
+              Hakkımda(Ön Yazı)
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -312,7 +500,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="onYaziKaydet" class="btn btn-success btn-block mt-3">Kaydet</button>
+            <button
+              @click="onYaziKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -320,19 +513,23 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Hakkımda(Ön Yazı) Kayıtları</h4>
+            >
+              Hakkımda(Ön Yazı) Kayıtları
+            </h4>
           </div>
 
           <div class="row mb-4">
             <p class="col-md-12">
               Ön Yazı:
               <br />
-              <strong>{{getOnYazi}}</strong>
+              <strong>{{ getOnYazi }}</strong>
             </p>
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="onYaziSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button @click="onYaziSil" class="btn btn-danger btn-block mt-3">
+              Sıfırla
+            </button>
           </div>
         </div>
 
@@ -340,7 +537,9 @@
           <button
             @click="kisiselBilgiFormuSil"
             class="btn btn-danger btn-block mt-5 mb-3"
-          >Tüm Bilgileri Sil</button>
+          >
+            Tüm Bilgileri Sil
+          </button>
         </div>
       </div>
     </div>
@@ -358,6 +557,9 @@ export default {
         business: "",
         business2: "",
         business3: "",
+        totalExperience: "",
+        totalProjects: "",
+        isWorking: "",
       },
       hobbies: {
         hobi: "",
@@ -371,6 +573,10 @@ export default {
       fotoBilgisi: {
         fotoFile: "",
         fotoName: "",
+      },
+      muzikBilgisi: {
+        muzikFile: "",
+        muzikName: "",
       },
     };
   },
@@ -408,11 +614,23 @@ export default {
         this.fotoBilgisi.fotoName = "";
       }
     },
+    muzikDataTut(event) {
+      if (event.target.files.length > 0) {
+        this.muzikBilgisi.muzikFile = event.target.files[0];
+        this.muzikBilgisi.muzikName = event.target.files[0].name;
+      } else {
+        this.muzikBilgisi.muzikFile = "";
+        this.muzikBilgisi.muzikName = "";
+      }
+    },
     cvKaydet() {
       this.$store.dispatch("setFireCv", this.cvBilgisi);
     },
     fotoKaydet() {
       this.$store.dispatch("setFireFoto", this.fotoBilgisi);
+    },
+    muzikKaydet() {
+      this.$store.dispatch("setFireMuzik", this.muzikBilgisi);
     },
 
     kisiselBilgiFormuSil() {
@@ -457,6 +675,16 @@ export default {
         this.$store.dispatch("deleteFireFoto", "silVeDur");
       }
     },
+    muzikSil() {
+      if (
+        this.$store.state.personelInformation.urlMuzik == undefined ||
+        this.$store.state.personelInformation.urlMuzik == ""
+      ) {
+        alert("Silinecek veri bulunamadı...");
+      } else {
+        this.$store.dispatch("deleteFireMuzik", "silVeDur");
+      }
+    },
   },
   computed: {
     getPersonelBilgileri() {
@@ -473,6 +701,9 @@ export default {
     },
     getFoto() {
       return this.$store.state.personelInformation.urlFoto;
+    },
+    getMuzik() {
+      return this.$store.state.personelInformation.urlMuzik;
     },
   },
   created() {
