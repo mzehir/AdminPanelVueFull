@@ -247,7 +247,7 @@
 
         <!-- ############################### -->
         <!-- ############################### -->
-        <!-- CV BÖLÜMÜ && PROFİL FOTOĞRAFI BÖLÜMÜ -->
+        <!-- CV BÖLÜMÜ && PROFİL FOTOĞRAFI && SES DOSYASI BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
 
@@ -317,7 +317,7 @@
           <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">UYARI!!!</h4>
             <p>
-              Cv, fotoğraf ve ses dosyası yüklenmesi tamamlanana kadar bekleyiniz.
+              Cv, fotoğraf ve ses dosyası yükleme işlemi tamamlanana kadar bekleyiniz.
               Tamamlandığında ekrana tamamlanmayla alakalı uyarı gelecektir.
             </p>
           </div>

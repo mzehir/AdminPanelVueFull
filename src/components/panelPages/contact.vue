@@ -2,7 +2,11 @@
   <div class="pt-5 text-center textFamily">
     <div class="card pl-3 pr-3 scrollDiv">
       <div class="card-header row bg-dark">
-        <h3 class="col-xs-12 col-sm-12 col-md-12 bg-white p-3 rounded shadow-lg">İletişim Formu</h3>
+        <h3
+          class="col-xs-12 col-sm-12 col-md-12 bg-white p-3 rounded shadow-lg"
+        >
+          İletişim Formu
+        </h3>
       </div>
       <div class="card-body row pb-0">
         <!-- ############################### -->
@@ -10,11 +14,15 @@
         <!-- İLETİŞİM BİLGİLERİ BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >İletişim Bilgileri</h4>
+            >
+              İletişim Bilgileri
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -65,7 +73,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="iletisimBilgileriKaydet" class="btn btn-success btn-block mt-3">Kaydet</button>
+            <button
+              @click="iletisimBilgileriKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -73,37 +86,52 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >İletişim Bilgi Kayıtları</h4>
+            >
+              İletişim Bilgi Kayıtları
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-md-12">
               GSM:
-              <strong>{{getIletisimBilgileri ? getIletisimBilgileri.gsm : ""}}</strong>
+              <strong>{{
+                getIletisimBilgileri ? getIletisimBilgileri.gsm : ""
+              }}</strong>
             </span>
           </div>
 
           <div class="row mb-4">
             <span class="col-md-12">
               Lokasyon:
-              <strong>{{getIletisimBilgileri ? getIletisimBilgileri.lokasyon : ""}}</strong>
+              <strong>{{
+                getIletisimBilgileri ? getIletisimBilgileri.lokasyon : ""
+              }}</strong>
             </span>
           </div>
 
           <div class="row mb-4">
             <span class="col-md-12">
               Email:
-              <strong>{{getIletisimBilgileri ? getIletisimBilgileri.email : ""}}</strong>
+              <strong>{{
+                getIletisimBilgileri ? getIletisimBilgileri.email : ""
+              }}</strong>
             </span>
           </div>
 
           <div class="row mb-4">
             <span class="col-md-12">
               Website:
-              <strong>{{getIletisimBilgileri ? getIletisimBilgileri.website : ""}}</strong>
+              <strong>{{
+                getIletisimBilgileri ? getIletisimBilgileri.website : ""
+              }}</strong>
             </span>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="iletisimBilgileriSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="iletisimBilgileriSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
         <!-- ############################### -->
@@ -111,11 +139,15 @@
         <!-- SOSYAL MEDYA HESAPLARI BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Sosyal Medya Hesapları</h4>
+            >
+              Sosyal Medya Hesapları
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -127,19 +159,45 @@
               id
               class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
             >
-              <option class="smHesapOption" value="fab fa-facebook-f">Facebook</option>
-              <option class="smHesapOption" value="fab fa-twitter">Twitter</option>
-              <option class="smHesapOption" value="fab fa-instagram">İnstagram</option>
-              <option class="smHesapOption" value="fab fa-github">Github</option>
-              <option class="smHesapOption" value="fab fa-linkedin-in">Linkedin</option>
-              <option class="smHesapOption" value="fab fa-youtube">Youtube</option>
-              <option class="smHesapOption" value="fab fa-pinterest-p">Pinterest</option>
-              <option class="smHesapOption" value="fab fa-reddit-alien">Reddit</option>
-              <option class="smHesapOption" value="fab fa-vimeo-v">Vimeo</option>
-              <option class="smHesapOption" value="fab fa-blogger-b">Blogger</option>
-              <option class="smHesapOption" value="fab fa-tumblr">Tumblr</option>
-              <option class="smHesapOption" value="fab fa-flickr">Flickr</option>
-              <option class="smHesapOption" value="fab fa-google-plus-g">Google Plus</option>
+              <option class="smHesapOption" value="fab fa-facebook-f">
+                Facebook
+              </option>
+              <option class="smHesapOption" value="fab fa-twitter">
+                Twitter
+              </option>
+              <option class="smHesapOption" value="fab fa-instagram">
+                İnstagram
+              </option>
+              <option class="smHesapOption" value="fab fa-github">
+                Github
+              </option>
+              <option class="smHesapOption" value="fab fa-linkedin-in">
+                Linkedin
+              </option>
+              <option class="smHesapOption" value="fab fa-youtube">
+                Youtube
+              </option>
+              <option class="smHesapOption" value="fab fa-pinterest-p">
+                Pinterest
+              </option>
+              <option class="smHesapOption" value="fab fa-reddit-alien">
+                Reddit
+              </option>
+              <option class="smHesapOption" value="fab fa-vimeo-v">
+                Vimeo
+              </option>
+              <option class="smHesapOption" value="fab fa-blogger-b">
+                Blogger
+              </option>
+              <option class="smHesapOption" value="fab fa-tumblr">
+                Tumblr
+              </option>
+              <option class="smHesapOption" value="fab fa-flickr">
+                Flickr
+              </option>
+              <option class="smHesapOption" value="fab fa-google-plus-g">
+                Google Plus
+              </option>
             </select>
           </div>
 
@@ -155,7 +213,12 @@
             />
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="smHesaplariKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+            <button
+              @click="smHesaplariKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -163,7 +226,9 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >S.M.Hesap Kayıtları</h4>
+            >
+              S.M.Hesap Kayıtları
+            </h4>
           </div>
           <div class="table-responsive">
             <table id class="table table-striped">
@@ -178,13 +243,13 @@
               </thead>
               <tbody>
                 <tr :key="index" v-for="(smHesap, index) in getsmHesaplari">
-                  <th scope="row">{{index + 1}}</th>
+                  <th scope="row">{{ index + 1 }}</th>
                   <td>
-                    {{smHesap.smInnerHtml}}
+                    {{ smHesap.smInnerHtml }}
                     <br />
                     <i :class="smHesap.smIconCode"></i>
                   </td>
-                  <td>{{smHesap.smUrlAdress}}</td>
+                  <td>{{ smHesap.smUrlAdress }}</td>
                   <td>
                     <button
                       type="button"
@@ -192,17 +257,26 @@
                       data-toggle="modal"
                       data-target="#exampleModal1"
                       @click="tekSMGuncelle(index)"
-                    >Güncelle</button>
+                    >
+                      Güncelle
+                    </button>
                   </td>
                   <td>
-                    <button @click="tekSMSil(index)" class="btn btn-danger">Sil</button>
+                    <button @click="tekSMSil(index)" class="btn btn-danger">
+                      Sil
+                    </button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="smHesaplariSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="smHesaplariSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
         <!-- ############################### -->
@@ -210,11 +284,15 @@
         <!-- REFERANSLAR BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Referanslar</h4>
+            >
+              Referanslar
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -277,7 +355,12 @@
           </div>
 
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="referanslarKaydet" class="btn btn-success btn-block mt-3">Kaydet</button>
+            <button
+              @click="referanslarKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
         <!-- ------------------------------- -->
@@ -285,7 +368,9 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-dark text-white shadow"
-            >Referans Bilgi Kayıtları</h4>
+            >
+              Referans Bilgi Kayıtları
+            </h4>
           </div>
           <div class="table-responsive">
             <table id class="table table-striped">
@@ -302,11 +387,11 @@
               </thead>
               <tbody>
                 <tr :key="index" v-for="(referans, index) in getReferanslar">
-                  <th scope="row">{{index + 1}}</th>
-                  <td>{{referans.nameAndSurname}}</td>
-                  <td>{{referans.gsm}}</td>
-                  <td>{{referans.email}}</td>
-                  <td>{{referans.website}}</td>
+                  <th scope="row">{{ index + 1 }}</th>
+                  <td>{{ referans.nameAndSurname }}</td>
+                  <td>{{ referans.gsm }}</td>
+                  <td>{{ referans.email }}</td>
+                  <td>{{ referans.website }}</td>
                   <td>
                     <button
                       type="button"
@@ -314,17 +399,29 @@
                       data-toggle="modal"
                       data-target="#exampleModal2"
                       @click="tekReferansGuncelle(index)"
-                    >Güncelle</button>
+                    >
+                      Güncelle
+                    </button>
                   </td>
                   <td>
-                    <button class="btn btn-danger" @click="tekReferansSil(index)">Sil</button>
+                    <button
+                      class="btn btn-danger"
+                      @click="tekReferansSil(index)"
+                    >
+                      Sil
+                    </button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="referanslarSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="referanslarSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div>
         <!-- ############################### -->
@@ -332,11 +429,15 @@
         <!-- HARİTA BÖLÜMÜ -->
         <!-- ############################### -->
         <!-- ############################### -->
-        <!-- <div class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark">
+        <!-- <div
+          class="col-xs-12 col-sm-12 col-md-6 pl-5 pr-5 mt-2 border-right border-dark"
+        >
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Konum Kaydedici</h4>
+            >
+              Konum Kaydedici
+            </h4>
           </div>
           <div class="row mb-4">
             <span class="col-xs-12 col-sm-12 col-md-3 text-left">
@@ -344,7 +445,12 @@
             </span>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="smHesaplariKaydet" class="btn btn-success btn-block mt-3">Ekle</button>
+            <button
+              @click="smHesaplariKaydet"
+              class="btn btn-success btn-block mt-3"
+            >
+              Ekle
+            </button>
           </div>
         </div> -->
         <!-- ------------------------------- -->
@@ -352,15 +458,22 @@
           <div class="row">
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
-            >Konum Gösterici</h4>
+            >
+              Konum Gösterici
+            </h4>
           </div>
           <div class="row mb-4">
-            <span class="col-xs-12 col-sm-12 col-md-3 text-left">
+            <div id="map" class="col-xs-12 col-sm-12 col-md-12 text-center">
               <strong>xxx:</strong>
-            </span>
+            </div>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-4 offset-md-4 text-center">
-            <button @click="smHesaplariSil" class="btn btn-danger btn-block mt-3">Sıfırla</button>
+            <button
+              @click="smHesaplariSil"
+              class="btn btn-danger btn-block mt-3"
+            >
+              Sıfırla
+            </button>
           </div>
         </div> -->
 
@@ -368,7 +481,9 @@
           <button
             @click="iletisimFormuSil"
             class="btn btn-danger btn-block mt-5 mb-3"
-          >Tüm Bilgileri Sil</button>
+          >
+            Tüm Bilgileri Sil
+          </button>
         </div>
       </div>
     </div>
@@ -390,7 +505,12 @@
             <h5 class="modal-title text-white" id="exampleModalLabel">
               <strong>Güncelleme Tablosu SM Hesapları</strong>
             </h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -404,19 +524,45 @@
                 v-model="changeSmHesaplar.smIconCode"
                 class="col-xs-12 col-sm-12 col-md-9 pr-3 ml-0 form-control"
               >
-                <option class="smHesapOptionModal" value="fab fa-facebook-f">Facebook</option>
-                <option class="smHesapOptionModal" value="fab fa-twitter">Twitter</option>
-                <option class="smHesapOptionModal" value="fab fa-instagram">İnstagram</option>
-                <option class="smHesapOptionModal" value="fab fa-github">Github</option>
-                <option class="smHesapOptionModal" value="fab fa-linkedin-in">Linkedin</option>
-                <option class="smHesapOptionModal" value="fab fa-youtube">Youtube</option>
-                <option class="smHesapOptionModal" value="fab fa-pinterest-p">Pinterest</option>
-                <option class="smHesapOptionModal" value="fab fa-reddit-alien">Reddit</option>
-                <option class="smHesapOptionModal" value="fab fa-vimeo-v">Vimeo</option>
-                <option class="smHesapOptionModal" value="fab fa-blogger-b">Blogger</option>
-                <option class="smHesapOptionModal" value="fab fa-tumblr">Tumblr</option>
-                <option class="smHesapOptionModal" value="fab fa-flickr">Flickr</option>
-                <option class="smHesapOptionModal" value="fab fa-google-plus-g">Google Plus</option>
+                <option class="smHesapOptionModal" value="fab fa-facebook-f">
+                  Facebook
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-twitter">
+                  Twitter
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-instagram">
+                  İnstagram
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-github">
+                  Github
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-linkedin-in">
+                  Linkedin
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-youtube">
+                  Youtube
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-pinterest-p">
+                  Pinterest
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-reddit-alien">
+                  Reddit
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-vimeo-v">
+                  Vimeo
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-blogger-b">
+                  Blogger
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-tumblr">
+                  Tumblr
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-flickr">
+                  Flickr
+                </option>
+                <option class="smHesapOptionModal" value="fab fa-google-plus-g">
+                  Google Plus
+                </option>
               </select>
             </div>
 
@@ -434,8 +580,20 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-            <button @click="changeSMKaydet" type="button" class="btn btn-success">Kaydet</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+            <button
+              @click="changeSMKaydet"
+              type="button"
+              class="btn btn-success"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
       </div>
@@ -460,7 +618,12 @@
             <h5 class="modal-title text-white" id="exampleModalLabel">
               <strong>Güncelleme Tablosu Referanslar</strong>
             </h5>
-            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -528,8 +691,20 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-            <button @click="changeReferansKaydet" type="button" class="btn btn-success">Kaydet</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Kapat
+            </button>
+            <button
+              @click="changeReferansKaydet"
+              type="button"
+              class="btn btn-success"
+            >
+              Kaydet
+            </button>
           </div>
         </div>
       </div>
