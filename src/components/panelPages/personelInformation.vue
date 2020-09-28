@@ -375,6 +375,8 @@
                 <source id="mpeg" :src="getMuzik" type="audio/mpeg" />
                 Burası tarayıcınız tarafından desteklenmiyor.
               </audio>
+              <br>
+              <a target="_blank" :href="getMuzik">Ses Dosyası Yeni Sayfada Aç </a>
               <br />
               <button
                 @click="muzikSil"
@@ -544,7 +546,7 @@
           <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">HATIRLATMA!!!</h4>
             <p>
-              KAYDETTİĞİNİZ BİLGİLER İLE OLUŞTURULAN <a target="_blank" href="https://vueclient.limiyum.com/">https://vueclient.limiyum.com/</a> ADRESİNİ İNCELEYEBİLİRSİNİZ.
+              KAYDETTİĞİNİZ BİLGİLER İLE OLUŞTURULAN SİTEYE <a target="_blank" href="https://vueclient.limiyum.com/">buradan</a> ULAŞABİLİRSİNİZ.
             </p>
             <P>PROJENİN GİTHUB ADRESİNE <a target="_blank" href="">buradan</a> ULAŞABİLİRSİNİZ.</P>
           </div>
