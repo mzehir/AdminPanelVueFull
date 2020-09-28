@@ -258,7 +258,7 @@
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
             >
-              CV İle Foto
+              CV & Foto & Ses Dosyası
             </h4>
           </div>
           <div class="row mb-4">
@@ -317,8 +317,9 @@
           <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">UYARI!!!</h4>
             <p>
-              Cv, fotoğraf ve ses dosyası yükleme işlemi tamamlanana kadar bekleyiniz.
-              Tamamlandığında ekrana tamamlanmayla alakalı uyarı gelecektir.
+              Cv, fotoğraf ve ses dosyası yükleme işlemi tamamlanana kadar
+              bekleyiniz. Tamamlandığında ekrana tamamlanmayla alakalı uyarı
+              gelecektir.
             </p>
           </div>
         </div>
@@ -328,7 +329,7 @@
             <h4
               class="col-xs-12 col-sm-12 col-md-12 card-title border p-2 mb-4 rounded bg-warning text-white shadow"
             >
-              CV Ve Foto Kaydı
+              CV & Foto & Ses Dosyası Kaydı
             </h4>
           </div>
 
@@ -540,6 +541,13 @@
           >
             Tüm Bilgileri Sil
           </button>
+          <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">HATIRLATMA!!!</h4>
+            <p>
+              KAYDETTİĞİNİZ BİLGİLER İLE OLUŞTURULAN <a target="_blank" href="https://vueclient.limiyum.com/">https://vueclient.limiyum.com/</a> ADRESİNİ İNCELEYEBİLİRSİNİZ.
+            </p>
+            <P>PROJENİN GİTHUB ADRESİNE <a target="_blank" href="">buradan</a> ULAŞABİLİRSİNİZ.</P>
+          </div>
         </div>
       </div>
     </div>
