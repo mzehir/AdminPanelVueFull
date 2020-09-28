@@ -548,7 +548,7 @@
             <p>
               KAYDETTİĞİNİZ BİLGİLER İLE OLUŞTURULAN SİTEYE <a target="_blank" href="https://vueclient.limiyum.com/">buradan</a> ULAŞABİLİRSİNİZ.
             </p>
-            <P>PROJENİN GİTHUB ADRESİNE <a target="_blank" href="">buradan</a> ULAŞABİLİRSİNİZ.</P>
+            <P>PROJENİN GİTHUB ADRESİNE <a target="_blank" href="https://github.com/mzehir/AdminPanelVueFull">buradan</a> ULAŞABİLİRSİNİZ.</P>
           </div>
         </div>
       </div>
